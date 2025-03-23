@@ -20,6 +20,11 @@ const styles = StyleSheet.create({
         backgroundColor: AppColors.surface,
         alignItems: "center",
         justifyContent: "center",
+        marginBottom: vs(20),
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.1,
+        shadowRadius: 6,
     },
     image:{
         height: vs(80),
