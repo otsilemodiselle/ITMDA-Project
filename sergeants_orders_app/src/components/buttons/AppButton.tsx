@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import { vs, s } from "react-native-size-matters";
 import AppText from "../texts/AppText";
 import { AppColors } from "../../styles/colors";
-import { sharedMarginBottomSmall, sharedMarignBottomSmall } from "../../styles/sharedStyles";
+import { sharedMarginBottomSmall } from "../../styles/sharedStyles";
 
 interface AppButtonProps {
   onPress: () => void; // Corrected onPress type
