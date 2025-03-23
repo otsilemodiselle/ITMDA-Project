@@ -13,13 +13,15 @@ import { useState } from "react";
 import AppButton from "../../components/buttons/AppButton";
 import { AppColors } from "../../styles/colors";
 
-const SignInScreen = () => {
+const SignUpScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userName, setUserName] = useState("");
 
   return (
     <AppSafeView style={styles.container}>
       <Image source={IMAGES.appLogo} style={styles.logo} />
+      <AppTextInput placeholder="Username" onChangeText={setUserName}/>
       <AppTextInput placeholder="Email" onChangeText={setEmail} />
       <AppTextInput
         placeholder="Password"
@@ -27,17 +29,17 @@ const SignInScreen = () => {
         secureTextEntry
       />
       <AppText style={styles.appName}>Sergeant's Orders!</AppText>
-      <AppButton title="Login" />
+      <AppButton title="Create Account" />
       <AppButton
-        title="Sign Up"
-        style={styles.registerButton}
+        title="Login"
+        style={styles.signInButton}
         textColor={AppColors.accentYellow}
       />
     </AppSafeView>
   );
 };
 
-export default SignInScreen;
+export default SignUpScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -52,7 +54,7 @@ const styles = StyleSheet.create({
   appName: {
     marginBottom: sharedMarginBottomMedium,
   },
-  registerButton: {
+  signInButton: {
     backgroundColor: AppColors.mainBackground,
     borderWidth: 1,
     borderColor: AppColors.accentYellow,
