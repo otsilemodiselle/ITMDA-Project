@@ -28,6 +28,7 @@ const AppTextInput: FC<AppTextInputProps> = ({
       secureTextEntry={secureTextEntry}
       keyboardType={keyboardType}
       style={[styles.input, style]}
+      placeholderTextColor={AppColors.accentGray}
     />
   );
 };

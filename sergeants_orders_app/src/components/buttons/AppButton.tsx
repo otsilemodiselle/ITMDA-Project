@@ -3,6 +3,7 @@ import React, { FC } from "react";
 import { vs, s } from "react-native-size-matters";
 import AppText from "../texts/AppText";
 import { AppColors } from "../../styles/colors";
+import { sharedMarignBottomSmall } from "../../styles/sharedStyles";
 
 interface AppButtonProps {
   onPress: () => void; // Corrected onPress type
@@ -50,6 +51,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: s(25),
     alignSelf: "center",
+    marginBottom: sharedMarignBottomSmall
   },
   textTitle: {
     // You can add text style here if needed

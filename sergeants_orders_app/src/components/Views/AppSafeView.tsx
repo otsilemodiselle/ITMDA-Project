@@ -15,7 +15,7 @@ interface AppSafeViewProps {
   style: ViewStyle;
 }
 
-const AppSaveView: FC<AppSafeViewProps> = ({ children, style }) => {
+const AppSafeView: FC<AppSafeViewProps> = ({ children, style }) => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={[styles.container, style]}>{children}</View>
@@ -23,7 +23,7 @@ const AppSaveView: FC<AppSafeViewProps> = ({ children, style }) => {
   );
 };
 
-export default AppSaveView;
+export default AppSafeView;
 
 const styles = StyleSheet.create({
   safeArea: {
