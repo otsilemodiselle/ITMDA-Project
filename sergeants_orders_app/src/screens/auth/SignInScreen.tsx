@@ -29,7 +29,7 @@ const SignInScreen = () => {
         secureTextEntry
       />
       <AppText style={styles.appName}>Sergeant's Orders!</AppText>
-      <AppButton title="Login" />
+      <AppButton title="Login"  onPress={() => navigation.navigate("MainAppBottomTabs")}/>
       <AppButton
         title="Sign Up"
         style={styles.registerButton}
