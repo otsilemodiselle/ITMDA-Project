@@ -6,7 +6,7 @@ import { AppColors } from "../../styles/colors";
 interface AppTextProps extends TextProps {
   children: React.ReactNode;
   style?: TextStyle | TextStyle[];
-  variant?: "bold" | "medium"
+  variant?: "bold" | "medium" | "boldDark" | "mediumDark"
 }
 
 const AppText :FC<AppTextProps> = ({ children, style, variant = "medium", ...rest }) => {
@@ -23,9 +23,19 @@ const styles = StyleSheet.create({
   bold: {
     fontSize: s(18),
     color: AppColors.mainText,
+    fontWeight: "bold"
+  },
+  boldDark: {
+    fontSize: s(18),
+    color: AppColors.mainBackground,
+    fontWeight: "bold"
   },
   medium: {
     fontSize: s(16),
     color: AppColors.secondaryText,
+  },
+  mediumDark: {
+    fontSize: s(16),
+    color: AppColors.mainBackground,
   },
 });
