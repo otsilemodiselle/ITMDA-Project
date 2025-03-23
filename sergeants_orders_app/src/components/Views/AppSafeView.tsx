@@ -12,7 +12,7 @@ import { IS_Android } from "../../constants/constants";
 
 interface AppSafeViewProps {
   children: ReactNode;
-  style: ViewStyle;
+  style?: ViewStyle;
 }
 
 const AppSafeView: FC<AppSafeViewProps> = ({ children, style }) => {
