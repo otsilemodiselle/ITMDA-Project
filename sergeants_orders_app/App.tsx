@@ -4,23 +4,16 @@ import AppText from "./src/components/texts/AppText";
 import AppSafeView from "./src/components/Views/AppSafeView";
 import FlashMessage, { showMessage } from "react-native-flash-message";
 import AppButton from "./src/components/buttons/AppButton";
+import AppTextInput from "./src/components/inputs/AppTextInput";
 
 export default function App() {
   return (
     <>
       <FlashMessage position={"top"} />
       <AppSafeView style={styles.container}>
-        <AppButton
-          title={"Show Message"}
-          // disabled
-          onPress={() =>
-            showMessage({
-              message: "Hello World!",
-              type: "success",
-            })
-          }
+        <AppTextInput
+          placeholder="Enter Name"
         />
-        <AppText variant="medium">Hello World!</AppText>
       </AppSafeView>
     </>
   );
