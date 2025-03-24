@@ -4,13 +4,14 @@ import { s, vs } from 'react-native-size-matters'
 import { AppColors } from '../../styles/colors'
 import AppText from '../texts/AppText'
 import { Ionicons } from "@expo/vector-icons"
+import { AppFonts } from '../../styles/fonts'
 
 const ProductCard = () => {
   return (
     <View style={styles.cardsContainer}>
         <View style={styles.productCard}>
             <View style={styles.buyIconContainer}>
-            <Ionicons name="cart" size={20} color={AppColors.accentGray} />
+            <Ionicons name="cart" size={30} color={AppColors.accentGray} />
             </View>
             <View style={styles.prodInfoContainer}>
                 <AppText style={styles.productName}>Full Rotisserie</AppText>
@@ -21,109 +22,6 @@ const ProductCard = () => {
             </View>
         </View>
         
-        <View style={styles.productCard}>
-            <View style={styles.buyIconContainer}>
-            <Ionicons name="cart" size={20} color={AppColors.accentGray} />
-            </View>
-            <View style={styles.prodInfoContainer}>
-                <AppText style={styles.productName}>Sergeant's Basket</AppText>
-                <AppText style={styles.price}>R150.00</AppText>
-            </View>
-            <View style={styles.imageContainer}>
-                <Image style={styles.productImage} source={require("../../assets/images/sergeants_basket.png")}/>
-            </View>
-        </View>
-
-        <View style={styles.productCard}>
-            <View style={styles.buyIconContainer}>
-            <Ionicons name="cart" size={20} color={AppColors.accentGray} />
-            </View>
-            <View style={styles.prodInfoContainer}>
-                <AppText style={styles.productName}>Pizza Roma</AppText>
-                <AppText style={styles.price}>R160.00</AppText>
-            </View>
-            <View style={styles.imageContainer}>
-                <Image style={styles.productImage} source={require("../../assets/images/roma.png")}/>
-            </View>
-        </View>    
-
-        <View style={styles.productCard}>
-            <View style={styles.buyIconContainer}>
-            <Ionicons name="cart" size={20} color={AppColors.accentGray} />
-            </View>
-            <View style={styles.prodInfoContainer}>
-                <AppText style={styles.productName}>Pizza Capri</AppText>
-                <AppText style={styles.price}>R135.00</AppText>
-            </View>
-            <View style={styles.imageContainer}>
-                <Image style={styles.productImage} source={require("../../assets/images/capri.png")}/>
-            </View>
-        </View>
-        
-        <View style={styles.productCard}>
-            <View style={styles.buyIconContainer}>
-            <Ionicons name="cart" size={20} color={AppColors.accentGray} />
-            </View>
-            <View style={styles.prodInfoContainer}>
-                <AppText style={styles.productName}>Pizza Bologna</AppText>
-                <AppText style={styles.price}>R165.00</AppText>
-            </View>
-            <View style={styles.imageContainer}>
-                <Image style={styles.productImage} source={require("../../assets/images/bologna.png")}/>
-            </View>
-        </View>    
-
-        <View style={styles.productCard}>
-            <View style={styles.buyIconContainer}>
-            <Ionicons name="cart" size={20} color={AppColors.accentGray} />
-            </View>
-            <View style={styles.prodInfoContainer}>
-                <AppText style={styles.productName}>Sergeant's Chicken Burger</AppText>
-                <AppText style={styles.price}>R60.00</AppText>
-            </View>
-            <View style={styles.imageContainer}>
-                <Image style={styles.productImage} source={require("../../assets/images/chicken_burger.png")}/>
-            </View>
-        </View>
-        
-        <View style={styles.productCard}>
-            <View style={styles.buyIconContainer}>
-            <Ionicons name="cart" size={20} color={AppColors.accentGray} />
-            </View>
-            <View style={styles.prodInfoContainer}>
-                <AppText style={styles.productName}>Sergeant's Chicken and Cheese Burger</AppText>
-                <AppText style={styles.price}>R70.00</AppText>
-            </View>
-            <View style={styles.imageContainer}>
-                <Image style={styles.productImage} source={require("../../assets/images/chicken_burger_with_cheese.png")}/>
-            </View>
-        </View>
-        
-        <View style={styles.productCard}>
-            <View style={styles.buyIconContainer}>
-            <Ionicons name="cart" size={20} color={AppColors.accentGray} />
-            </View>
-            <View style={styles.prodInfoContainer}>
-                <AppText style={styles.productName}>Sergeant's Chicken Burger</AppText>
-                <AppText style={styles.price}>R60.00</AppText>
-            </View>
-            <View style={styles.imageContainer}>
-                <Image style={styles.productImage} source={require("../../assets/images/chicken_burger.png")}/>
-            </View>
-        </View>
-        
-        <View style={styles.productCard}>
-            <View style={styles.buyIconContainer}>
-            <Ionicons name="cart" size={20} color={AppColors.accentGray} />
-            </View>
-            <View style={styles.prodInfoContainer}>
-                <AppText style={styles.productName}>Sergeant's Chicken Burger</AppText>
-                <AppText style={styles.price}>R60.00</AppText>
-            </View>
-            <View style={styles.imageContainer}>
-                <Image style={styles.productImage} source={require("../../assets/images/chicken_burger.png")}/>
-            </View>
-        </View>
         
         
     </View>
@@ -163,7 +61,8 @@ const styles = StyleSheet.create({
     },
     price:{
         marginBottom:vs(10),
-        marginStart:vs(20)
+        marginStart:vs(20),
+        fontFamily: AppFonts.Bold
     },
     buyIconContainer:{
         height: vs(130),
