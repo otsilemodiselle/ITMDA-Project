@@ -8,7 +8,7 @@ import { AppFonts } from "../../styles/fonts";
 import { commonStyles } from "../../styles/sharedStyles";
 
 interface IProductCard {
-  onPress: () => void;
+  onAddToCartPress: () => void;
   title: string;
   price: string;
   imageURL: string;
@@ -34,16 +34,9 @@ const ProductCard: FC<IProductCard> = ({ onPress, imageURL, title, price }) => {
 export default ProductCard;
 
 const styles = StyleSheet.create({
-  cardsContainer: {
-    flex: 1,
-    flexDirection: "column",
-    // flexWrap: "wrap",
-    justifyContent: "flex-start",
-    alignItems: "center",
-  },
   productCard: {
     flexDirection: "row",
-    width: "90%",
+    width: "100%",
     height: vs(130),
     backgroundColor: AppColors.surface,
     borderRadius: s(5),
@@ -67,6 +60,7 @@ const styles = StyleSheet.create({
     marginBottom: vs(10),
     marginStart: vs(20),
     fontFamily: AppFonts.Bold,
+    color: AppColors.accentRed
   },
   addToCartButton: {
     height: vs(130),
