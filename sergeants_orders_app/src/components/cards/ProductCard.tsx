@@ -14,10 +14,10 @@ interface IProductCard {
   imageURL: string;
 }
 
-const ProductCard: FC<IProductCard> = ({ onPress, imageURL, title, price }) => {
+const ProductCard: FC<IProductCard> = ({ onAddToCartPress, imageURL, title, price }) => {
   return (
     <View style={styles.productCard}>
-      <TouchableOpacity style={styles.addToCartButton} onPress={onPress}>
+      <TouchableOpacity style={styles.addToCartButton} onPress={onAddToCartPress}>
         <Ionicons name="add-circle-outline" size={30} color={AppColors.accentGray} />
       </TouchableOpacity>
       <View style={styles.prodInfoContainer}>

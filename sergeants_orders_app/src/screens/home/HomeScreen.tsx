@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { SectionList, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import AppSafeView from "../../components/Views/AppSafeView";
 import HomeHeader from "../../components/headers/homeHeader";
@@ -6,15 +6,14 @@ import { AppColors } from "../../styles/colors";
 import ProductCard from "../../components/cards/ProductCard";
 import { FlatList } from "react-native-gesture-handler";
 import { products } from "../../data/products";
-import { s } from "react-native-size-matters";
+import { s, vs } from "react-native-size-matters";
 
 const HomeScreen = () => {
   return (
-    <AppSafeView>
+    <AppSafeView style={styles.homeContainer}>
       <HomeHeader />
-      <FlatList
-        numColumns={1}
-        data={products}
+      <SectionList
+        sections={products}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <ProductCard
@@ -24,9 +23,14 @@ const HomeScreen = () => {
             onAddToCartPress={() => {}}
           />
         )}
-        contentContainerStyle={{
-          paddingRight: s(20),
-        }}
+        renderSectionHeader={({ section: { title } }) => (
+          <View style={styles.sectionCard}>
+            <Text style={styles.sectionTitle}>
+              {title}
+            </Text>
+          </View>
+        )}
+        contentContainerStyle={{ paddingRight: s(20) }}
       />
     </AppSafeView>
   );
@@ -34,4 +38,21 @@ const HomeScreen = () => {
 
 export default HomeScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  homeContainer:{
+    flex:1,
+    
+  },
+  sectionCard:{
+    paddingVertical: s(10), 
+    marginTop: vs(2),
+    marginLeft: s(10),
+    backgroundColor: AppColors.accentGray,
+    width: "100%",
+  },
+  sectionTitle:{
+    fontSize: s(16), 
+    fontWeight: "bold", 
+    marginLeft: s(10)
+  }
+});
