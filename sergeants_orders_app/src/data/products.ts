@@ -1,210 +1,186 @@
-export const products =[
-{
-    id:1,
-    name: "6 Pieces & Chips",
-    price:160,
-    category: "Chicken",
-    description: "Flame grilled chicken pieces special sauce",
-    imageURL: "https://github.com/otsilemodiselle/sergeants-order-mobile/blob/20f59553c064c2b0dd5aeaa552eec260d9b53433/sergeants_orders_app/assets/1361.png?raw=true"
-},
-{
-    id:2,
-    name: "Sergeant's Chicken Burger",
-    price:60,
-    category: "Burgers",
-    description: "Stacked burger sandwich with crumbed patty and fixings",
-    imageURL: "https://github.com/otsilemodiselle/sergeants-order-mobile/blob/a92225f1f21e38fa691fb189fafd0717a73f742e/sergeants_orders_app/assets/1391.png?raw=true"
-},
-{
-    id:3,
-    name: "Sergeant's Chicken & Cheese Burger",
-    price:70,
-    category: "Burger",
-    description: "Stacked burger sandwich with crumbed patty, cheese and fixings",
-    imageURL: "https://github.com/otsilemodiselle/sergeants-order-mobile/blob/a92225f1f21e38fa691fb189fafd0717a73f742e/sergeants_orders_app/assets/1390.png?raw=true"
-},
-{
-    id:4,
-    name: "Sergeant's Mouthful Burger",
-    price:90,
-    category: "Burger",
-    description: "Stacked burger sandwich with crumbed patty, our famous mac n cheese and fixings",
-    imageURL: "https://github.com/otsilemodiselle/sergeants-order-mobile/blob/20f59553c064c2b0dd5aeaa552eec260d9b53433/sergeants_orders_app/assets/1360.png?raw=true"
-},
-{
-    id:5,
-    name: "Chips",
-    price:30,
-    category: "Sides",
-    description: "Golden brown, hand-cut, potato chips",
-    imageURL: "https://github.com/otsilemodiselle/sergeants-order-mobile/blob/a92225f1f21e38fa691fb189fafd0717a73f742e/sergeants_orders_app/assets/1394.png?raw=true"
-},
-{
-    id:6,
-    name: "Coleslaw",
-    price:25,
-    category: "Sides",
-    description: "Fresh and crunchy veg mix in tangy mayonnaise",
-    imageURL: "https://github.com/otsilemodiselle/sergeants-order-mobile/blob/20f59553c064c2b0dd5aeaa552eec260d9b53433/sergeants_orders_app/assets/1358.png?raw=true"
-},
-{
-    id:7,
-    name: "Sergeant's Famous Mac n Cheese",
-    price:30,
-    category: "Sides",
-    description: "Delicious macaroni in the Sergeant's famous cheesy sauce",
-    imageURL: "https://github.com/otsilemodiselle/sergeants-order-mobile/blob/20f59553c064c2b0dd5aeaa552eec260d9b53433/sergeants_orders_app/assets/1357.png?raw=true"
-},
-{
-    id:8,
-    name: "Chicken Nuggets",
-    price:45,
-    category: "Extras",
-    description: "Fluffy and crumbed chicken nuggets",
-    imageURL: "https://github.com/otsilemodiselle/sergeants-order-mobile/blob/a92225f1f21e38fa691fb189fafd0717a73f742e/sergeants_orders_app/assets/1393.png?raw=true"
-},
-{
-    id:9,
-    name: "Chicken Strips",
-    price:45,
-    category: "Extras",
-    description: "Crunchy and crumbed chicken strips",
-    imageURL: "https://github.com/otsilemodiselle/sergeants-order-mobile/blob/a92225f1f21e38fa691fb189fafd0717a73f742e/sergeants_orders_app/assets/1392.png?raw=true"
-},
-{
-    id:10,
-    name: "Soldiers Basket",
-    price:120,
-    category: "Baskets",
-    description: "Combo of chicken strips, cheese & am pillows, and chips",
-    imageURL: "https://github.com/otsilemodiselle/sergeants-order-mobile/blob/20f59553c064c2b0dd5aeaa552eec260d9b53433/sergeants_orders_app/assets/1368.png?raw=true"
-},
-{
-    id:11,
-    name: "Sergeant Basket",
-    price:150,
-    category: "Basket",
-    description: "Combo of baby Russian grillers, chicken strips, and pillows",
-    imageURL: "https://github.com/otsilemodiselle/sergeants-order-mobile/blob/20f59553c064c2b0dd5aeaa552eec260d9b53433/sergeants_orders_app/assets/1366.png?raw=true"
-},
-{
-    id:12,
-    name: "Napoli",
-    price:120,
-    category: "Pizza",
-    description: "Tomato base, mozzarella, basil",
-    imageURL: "https://github.com/otsilemodiselle/sergeants-order-mobile/blob/20f59553c064c2b0dd5aeaa552eec260d9b53433/sergeants_orders_app/assets/1376.png?raw=true"
-},
-{
-    id:13,
-    name: "Roma",
-    price:160,
-    category: "Pizza",
-    description: "Tomato base, chourizo, ham, pepperoni, garlic",
-    imageURL: "https://github.com/otsilemodiselle/sergeants-order-mobile/blob/20f59553c064c2b0dd5aeaa552eec260d9b53433/sergeants_orders_app/assets/1375.png?raw=true"
-},
-{
-    id:14,
-    name: "Capri",
-    price:135,
-    category: "Pizza",
-    description: "Tomato base, peppers, onions, olives",
-    imageURL: "https://github.com/otsilemodiselle/sergeants-order-mobile/blob/20f59553c064c2b0dd5aeaa552eec260d9b53433/sergeants_orders_app/assets/1374.png?raw=true"
-},
-{
-    id:15,
-    name: "Toscana",
-    price:145,
-    category: "Pizza",
-    description: "Tomato base, ham, mushrooms",
-    imageURL: "https://github.com/otsilemodiselle/sergeants-order-mobile/blob/20f59553c064c2b0dd5aeaa552eec260d9b53433/sergeants_orders_app/assets/1374.png?raw=true"
-},
-{
-    id:16,
-    name: "Sicilia",
-    price:145,
-    category: "Pizza",
-    description: "Tomato base, ham, pineapple",
-    imageURL: "https://github.com/otsilemodiselle/sergeants-order-mobile/blob/20f59553c064c2b0dd5aeaa552eec260d9b53433/sergeants_orders_app/assets/1370.png?raw=true"
-},
-{
-    id:17,
-    name: "Bologna",
-    price:165,
-    category: "Pizza",
-    description: "Tomato base, onion, chilli, green pepper, ham, mince",
-    imageURL: "https://github.com/otsilemodiselle/sergeants-order-mobile/blob/20f59553c064c2b0dd5aeaa552eec260d9b53433/sergeants_orders_app/assets/1369.png?raw=true"
-},
-{
-    id:18,
-    name: "Florence",
-    price:135,
-    category: "Pizza",
-    description: "Tomato base, onion, chicken breast pieces, and rosemary",
-    imageURL: "https://github.com/otsilemodiselle/sergeants-order-mobile/blob/20f59553c064c2b0dd5aeaa552eec260d9b53433/sergeants_orders_app/assets/1364.png?raw=true"
-},
-{
-    id:19,
-    name: "Cheese and Tomato Pillows",
-    price:30,
-    category: "Cusini (Pillows)",
-    description: "Cheese and tomato on puff pastry",
-    imageURL: "https://github.com/otsilemodiselle/sergeants-order-mobile/blob/20f59553c064c2b0dd5aeaa552eec260d9b53433/sergeants_orders_app/assets/1365.png?raw=true"
-},
-{
-    id:20,
-    name: "Cheese, Ham and Tomato Pillows",
-    price:30,
-    category: "Cusini (Pillows)",
-    description: "Cheese, ham and tomato on puff pastry",
-    imageURL: "https://github.com/otsilemodiselle/sergeants-order-mobile/blob/20f59553c064c2b0dd5aeaa552eec260d9b53433/sergeants_orders_app/assets/1367.png?raw=true"
-},
-{
-    id:21,
-    name: "Full Rotisserie Chicken, Chips, Coleslaw",
-    price:189,
-    category: "Chicken",
-    description: "Full filled chicken with special spices and optional chips",
-    imageURL: "https://github.com/otsilemodiselle/sergeants-order-mobile/blob/20f59553c064c2b0dd5aeaa552eec260d9b53433/sergeants_orders_app/assets/1362.png?raw=true"
-},
-{
-    id:22,
-    name: "Coke",
-    price:30,
-    category: "Drinks",
-    description: "440ml buddy",
-    imageURL: "https://github.com/otsilemodiselle/sergeants-order-mobile/blob/20f59553c064c2b0dd5aeaa552eec260d9b53433/sergeants_orders_app/assets/1354.png?raw=true"
-},
-{
-    id:23,
-    name: "Sprite",
-    price:30,
-    category: "Drinks",
-    description: "440ml buddy",
-    imageURL: "https://github.com/otsilemodiselle/sergeants-order-mobile/blob/20f59553c064c2b0dd5aeaa552eec260d9b53433/sergeants_orders_app/assets/1380.png?raw=true"
-},
-{
-    id:24,
-    name: "Rhodes Fruit Juice",
-    price:15,
-    category: "Drinks",
-    description: "200ml juice",
-    imageURL: "https://github.com/otsilemodiselle/sergeants-order-mobile/blob/20f59553c064c2b0dd5aeaa552eec260d9b53433/sergeants_orders_app/assets/1379.png?raw=true"
-},
-{
-    id:25,
-    name: "Still Water",
-    price:20,
-    category: "Drinks",
-    description: "500ml still water",
-    imageURL: "https://github.com/otsilemodiselle/sergeants-order-mobile/blob/20f59553c064c2b0dd5aeaa552eec260d9b53433/sergeants_orders_app/assets/1381.png?raw=true"
-},
-{
-    id:26,
-    name: "Sparking Water",
-    price:20,
-    category: "Drinks",
-    description: "500ml sparkling water",
-    imageURL: "https://github.com/otsilemodiselle/sergeants-order-mobile/blob/20f59553c064c2b0dd5aeaa552eec260d9b53433/sergeants_orders_app/assets/1381.png?raw=true"
-}
+export const products = [
+    {
+        id: 1,
+        price: 160,
+        title: "6 Piece Chicken and Chips",
+        category: "Chicken",
+        imageURL: "https://github.com/otsilemodiselle/ITMDA-Project/blob/e73d6d1fd29dfa6bf6adebc28f59e4f831ce4cb8/sergeants_orders_app/src/assets/images/chicken_pieces.png?raw=true",
+    },
+    {
+        id: 2,
+        price: 60,
+        title: "Sergeant's Chicken Burger",
+        category: "Burgers",
+        imageURL: "https://github.com/otsilemodiselle/ITMDA-Project/blob/e73d6d1fd29dfa6bf6adebc28f59e4f831ce4cb8/sergeants_orders_app/src/assets/images/chicken_burger.png?raw=true",
+    },
+    {
+        id: 3,
+        price: 70,
+        title: "Sergeant's Chicken and Cheese Burger",
+        category: "Burgers",
+        imageURL: "https://github.com/otsilemodiselle/ITMDA-Project/blob/e73d6d1fd29dfa6bf6adebc28f59e4f831ce4cb8/sergeants_orders_app/src/assets/images/chicken_burger_with_cheese.png?raw=true",
+    },
+    {
+        id: 4,
+        price: 90,
+        title: "Sergeant's Mouthful Burger",
+        category: "Burgers",
+        imageURL: "https://github.com/otsilemodiselle/ITMDA-Project/blob/e73d6d1fd29dfa6bf6adebc28f59e4f831ce4cb8/sergeants_orders_app/src/assets/images/mac_n_cheese_chicken_burger.png?raw=true",
+    },
+    {
+        id: 5,
+        price: 30,
+        title: "Chips",
+        category: "Sides",
+        imageURL: "https://github.com/otsilemodiselle/ITMDA-Project/blob/e73d6d1fd29dfa6bf6adebc28f59e4f831ce4cb8/sergeants_orders_app/src/assets/images/fries.png?raw=true",
+    },
+    {
+        id: 6,
+        price: 25,
+        title: "Coleslaw",
+        category: "Sides",
+        imageURL: "https://github.com/otsilemodiselle/ITMDA-Project/blob/e73d6d1fd29dfa6bf6adebc28f59e4f831ce4cb8/sergeants_orders_app/src/assets/images/coleslaw.png?raw=true",
+    },
+    {
+        id: 7,
+        price: 30,
+        title: "Mac n Cheese",
+        category: "Sides",
+        imageURL: "https://github.com/otsilemodiselle/ITMDA-Project/blob/e73d6d1fd29dfa6bf6adebc28f59e4f831ce4cb8/sergeants_orders_app/src/assets/images/mac_n_cheese.png?raw=true",
+    },
+    {
+        id: 8,
+        price: 45,
+        title: "Chicken Nuggets",
+        category: "Sides",
+        imageURL: "https://github.com/otsilemodiselle/ITMDA-Project/blob/e73d6d1fd29dfa6bf6adebc28f59e4f831ce4cb8/sergeants_orders_app/src/assets/images/nuggets.png?raw=true",
+    },
+    {
+        id: 9,
+        price: 45,
+        title: "Chicken Strips",
+        category: "Sides",
+        imageURL: "https://github.com/otsilemodiselle/ITMDA-Project/blob/e73d6d1fd29dfa6bf6adebc28f59e4f831ce4cb8/sergeants_orders_app/src/assets/images/strips.png?raw=true",
+    },
+    {
+        id: 10,
+        price: 120,
+        title: "Soldiers Basket",
+        category: "Baskets",
+        imageURL: "https://github.com/otsilemodiselle/ITMDA-Project/blob/e73d6d1fd29dfa6bf6adebc28f59e4f831ce4cb8/sergeants_orders_app/src/assets/images/basket1.png?raw=true",
+    },
+    {
+        id: 11,
+        price: 150,
+        title: "Sergeants Basket",
+        category: "Baskets",
+        imageURL: "https://github.com/otsilemodiselle/ITMDA-Project/blob/e73d6d1fd29dfa6bf6adebc28f59e4f831ce4cb8/sergeants_orders_app/src/assets/images/basket2.png?raw=true",
+    },
+    {
+        id: 12,
+        price: 120,
+        title: "Napoli",
+        category: "Pizza",
+        imageURL: "https://github.com/otsilemodiselle/ITMDA-Project/blob/e73d6d1fd29dfa6bf6adebc28f59e4f831ce4cb8/sergeants_orders_app/src/assets/images/napoli.png?raw=true",
+    },
+    {
+        id: 13,
+        price: 160,
+        title: "Roma",
+        category: "Pizza",
+        imageURL: "https://github.com/otsilemodiselle/ITMDA-Project/blob/e73d6d1fd29dfa6bf6adebc28f59e4f831ce4cb8/sergeants_orders_app/src/assets/images/roma.png?raw=true",
+    },
+    {
+        id: 14,
+        price: 135,
+        title: "Capri",
+        category: "Pizza",
+        imageURL: "https://github.com/otsilemodiselle/ITMDA-Project/blob/e73d6d1fd29dfa6bf6adebc28f59e4f831ce4cb8/sergeants_orders_app/src/assets/images/capri.png?raw=true",
+    },
+    {
+        id: 15,
+        price: 145,
+        title: "Toscana",
+        category: "Pizza",
+        imageURL: "https://github.com/otsilemodiselle/ITMDA-Project/blob/e73d6d1fd29dfa6bf6adebc28f59e4f831ce4cb8/sergeants_orders_app/src/assets/images/toscana_ham_mushroom.png?raw=true",
+    },
+    {
+        id: 16,
+        price: 145,
+        title: "Sicilia",
+        category: "Pizza",
+        imageURL: "https://github.com/otsilemodiselle/ITMDA-Project/blob/e73d6d1fd29dfa6bf6adebc28f59e4f831ce4cb8/sergeants_orders_app/src/assets/images/sicilia.png?raw=true",
+    },
+    {
+        id: 17,
+        price: 165,
+        title: "Bologna",
+        category: "Pizza",
+        imageURL: "https://github.com/otsilemodiselle/ITMDA-Project/blob/e73d6d1fd29dfa6bf6adebc28f59e4f831ce4cb8/sergeants_orders_app/src/assets/images/bologna.png?raw=true",
+    },
+    {
+        id: 18,
+        price: 135,
+        title: "Florence",
+        category: "Pizza",
+        imageURL: "https://github.com/otsilemodiselle/ITMDA-Project/blob/e73d6d1fd29dfa6bf6adebc28f59e4f831ce4cb8/sergeants_orders_app/src/assets/images/florence.png?raw=true",
+    },
+    {
+        id: 19,
+        price: 30,
+        title: "Cheese and ham",
+        category: "Cuscini Pillows",
+        imageURL: "https://github.com/otsilemodiselle/ITMDA-Project/blob/e73d6d1fd29dfa6bf6adebc28f59e4f831ce4cb8/sergeants_orders_app/src/assets/images/ham_and_cheese_pillows.png?raw=true",
+    },
+    {
+        id: 20,
+        price: 30,
+        title: "Cheese Ham and Tomato",
+        category: "Cuscini Pillows",
+        imageURL: "https://github.com/otsilemodiselle/ITMDA-Project/blob/e73d6d1fd29dfa6bf6adebc28f59e4f831ce4cb8/sergeants_orders_app/src/assets/images/ham_tomato_and_cheese_pillows.png?raw=true",
+    },
+    {
+        id: 21,
+        price: 189,
+        title: "Full Rotisserie Chicken, Chips, and Coleslaw",
+        category: "Chicken",
+        imageURL: "https://github.com/otsilemodiselle/ITMDA-Project/blob/e73d6d1fd29dfa6bf6adebc28f59e4f831ce4cb8/sergeants_orders_app/src/assets/images/rotisserie.png?raw=true",
+    },
+    {
+        id: 22,
+        price: 25,
+        title: "Coke",
+        category: "Drinks",
+        imageURL: "https://github.com/otsilemodiselle/ITMDA-Project/blob/e73d6d1fd29dfa6bf6adebc28f59e4f831ce4cb8/sergeants_orders_app/src/assets/images/coke.png?raw=true",
+    },
+    {
+        id: 23,
+        price: 25,
+        title: "Sprite",
+        category: "Drinks",
+        imageURL: "https://github.com/otsilemodiselle/ITMDA-Project/blob/e73d6d1fd29dfa6bf6adebc28f59e4f831ce4cb8/sergeants_orders_app/src/assets/images/sprite.png?raw=true",
+    },
+    {
+        id: 24,
+        price: 20,
+        title: "Still Water",
+        category: "Drinks",
+        imageURL: "https://github.com/otsilemodiselle/ITMDA-Project/blob/e73d6d1fd29dfa6bf6adebc28f59e4f831ce4cb8/sergeants_orders_app/src/assets/images/1381.png?raw=true",
+    },
+    {
+        id: 25,
+        price: 20,
+        title: "Sparkling",
+        category: "Drinks",
+        imageURL: "https://github.com/otsilemodiselle/ITMDA-Project/blob/e73d6d1fd29dfa6bf6adebc28f59e4f831ce4cb8/sergeants_orders_app/src/assets/images/1381.png?raw=true",
+    },
+    {
+        id: 26,
+        price: 15,
+        title: "Rhodes Juice",
+        category: "Drinks",
+        imageURL: "https://github.com/otsilemodiselle/ITMDA-Project/blob/e73d6d1fd29dfa6bf6adebc28f59e4f831ce4cb8/sergeants_orders_app/src/assets/images/rhodes.png?raw=true",
+    },
+
+
 ]
