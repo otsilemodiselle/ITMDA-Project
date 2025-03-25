@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
   sectionTitle:{
     fontSize: s(16), 
     fontWeight: "bold", 
+    color: AppColors.mainBackground,
     marginLeft: s(10)
   }
 });
