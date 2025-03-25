@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { FC } from "react";
 import { s, vs } from "react-native-size-matters";
 import { AppColors } from "../../styles/colors";
 import AppText from "../texts/AppText";
@@ -7,25 +7,27 @@ import { Ionicons } from "@expo/vector-icons";
 import { AppFonts } from "../../styles/fonts";
 import { commonStyles } from "../../styles/sharedStyles";
 
-const ProductCard = () => {
+interface IProductCard {
+  onPress: () => void;
+  title: string;
+  price: string;
+  imageURL: string;
+}
+
+const ProductCard: FC<IProductCard> = ({ onPress, imageURL, title, price }) => {
   return (
-    
-      <View style={styles.productCard}>
-        <TouchableOpacity style={styles.addToCartButton}>
-          <Ionicons name="cart" size={30} color={AppColors.accentGray} />
-        </TouchableOpacity>
-        <View style={styles.prodInfoContainer}>
-          <AppText style={styles.productName}>Full Rotisserie</AppText>
-          <AppText style={styles.price}>R189.00</AppText>
-        </View>
-        <View style={styles.imageContainer}>
-          <Image
-            style={styles.productImage}
-            source={require("../../assets/images/rotisserie.png")}
-          />
-        </View>
+    <View style={styles.productCard}>
+      <TouchableOpacity style={styles.addToCartButton} onPress={onPress}>
+        <Ionicons name="cart" size={30} color={AppColors.accentGray} />
+      </TouchableOpacity>
+      <View style={styles.prodInfoContainer}>
+        <AppText style={styles.productName}>{title}</AppText>
+        <AppText style={styles.price}>R{price}</AppText>
       </View>
-   
+      <View style={styles.imageContainer}>
+        <Image style={styles.productImage} source={{ uri: imageURL }} />
+      </View>
+    </View>
   );
 };
 
