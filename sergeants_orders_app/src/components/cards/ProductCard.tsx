@@ -18,7 +18,7 @@ const ProductCard: FC<IProductCard> = ({ onPress, imageURL, title, price }) => {
   return (
     <View style={styles.productCard}>
       <TouchableOpacity style={styles.addToCartButton} onPress={onPress}>
-        <Ionicons name="cart" size={30} color={AppColors.accentGray} />
+        <Ionicons name="add-circle-outline" size={30} color={AppColors.accentGray} />
       </TouchableOpacity>
       <View style={styles.prodInfoContainer}>
         <AppText style={styles.productName}>{title}</AppText>
@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
   addToCartButton: {
     height: vs(130),
     width: s(30),
+    marginLeft: s(10),
     // borderWidth: 1,
     // borderColor: "white",
     alignItems: "center",
