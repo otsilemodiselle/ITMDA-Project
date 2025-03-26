@@ -1,5 +1,5 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
+import React, { FC } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import AppText from "../texts/AppText";
 import { s, vs } from "react-native-size-matters";
@@ -7,26 +7,30 @@ import { AppFonts } from "../../styles/fonts";
 import { AppColors } from "../../styles/colors";
 import { commonStyles } from "../../styles/sharedStyles";
 
-const tempItem = {
-  id: 4,
-  price: 90,
-  title:
-    "Sergeant's Mouthful Burger - Coleslaw, Chicken Patty and Mac n Cheese",
-  category: "Burgers",
-  imageURL:
-    "https://github.com/otsilemodiselle/ITMDA-Project/blob/e73d6d1fd29dfa6bf6adebc28f59e4f831ce4cb8/sergeants_orders_app/src/assets/images/mac_n_cheese_chicken_burger.png?raw=true",
-  onAddItem: () => {},
-  onReduceItem: () => {},
-  onDeleteItem: () => {},
-};
+interface ICartItem{
+    title: string,
+    price: string | number,
+    imageURL: string,
+    qty: number,
+    onDeletePress: () => void,
+    onIncreasePress: () => void,
+    onReducedPress: () => void,
+}
 
-const CartItem = () => {
+const CartItem :FC<ICartItem> = ({
+    title,
+    price,
+    imageURL,
+    qty,
+    onDeletePress,
+    onIncreasePress,
+    onReducedPress}) => {
   return (
     <View style={styles.productCard}>
       <View style={styles.cartItemActionsContainer}>
         <TouchableOpacity
           style={styles.addItemButton}
-          onPress={tempItem.onAddItem}
+          onPress={onIncreasePress}
         >
           <Ionicons
             name="add-circle-outline"
@@ -34,10 +38,10 @@ const CartItem = () => {
             color={AppColors.accentGray}
           />
         </TouchableOpacity>
-        <AppText style={styles.itemCounter}>1</AppText>
+        <AppText style={styles.itemCounter}>{qty}</AppText>
         <TouchableOpacity
           style={styles.reduceItemButton}
-          onPress={tempItem.onReduceItem}
+          onPress={onReducedPress}
         >
           <Ionicons
             name="remove-circle-outline"
@@ -48,11 +52,11 @@ const CartItem = () => {
       </View>
       <View style={styles.prodInfoContainer}>
         <View>
-          <AppText style={styles.productName}>{tempItem.title}</AppText>
+          <AppText style={styles.productName}>{title}</AppText>
         </View>
         <View style={styles.priceAndDeleteGroup}>
-          <AppText style={styles.price}>R{tempItem.price}</AppText>
-          <TouchableOpacity>
+          <AppText style={styles.price}>R{price}</AppText>
+          <TouchableOpacity onPress={onDeletePress}>
             <View style={styles.deleteCartItemSection}>
               <AppText style={styles.deleteCaption}>Delete</AppText>
               <Ionicons name="trash" size={25} color={AppColors.accentGray} />
@@ -63,7 +67,7 @@ const CartItem = () => {
       <View style={styles.imageContainer}>
         <Image
           style={styles.productImage}
-          source={{ uri: tempItem.imageURL }}
+          source={{ uri: imageURL }}
         />
       </View>
     </View>
