@@ -8,7 +8,7 @@ const CartScreen = () => {
   return (
     <AppSafeView>
         <HomeHeader/>
-        <EmptyCart/>
+        {/* <EmptyCart/> */}
     </AppSafeView>
   )
 }

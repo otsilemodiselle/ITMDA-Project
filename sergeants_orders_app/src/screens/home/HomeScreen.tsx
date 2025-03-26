@@ -47,13 +47,13 @@ const styles = StyleSheet.create({
     paddingVertical: s(10), 
     marginTop: vs(2),
     marginLeft: s(10),
-    backgroundColor: AppColors.accentGray,
+    backgroundColor: AppColors.mainBackground,
     width: "100%",
   },
   sectionTitle:{
-    fontSize: s(16), 
+    fontSize: s(18), 
     fontWeight: "bold", 
-    color: AppColors.mainBackground,
+    color: AppColors.mainText,
     marginLeft: s(10)
   }
 });
