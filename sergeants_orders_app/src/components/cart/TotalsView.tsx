@@ -1,8 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { FC } from "react";
-import { verticalScale, vs } from "react-native-size-matters";
+import { s, verticalScale, vs } from "react-native-size-matters";
 import AppText from "../texts/AppText";
 import { AppColors } from "../../styles/colors";
+import AppButton from "../buttons/AppButton";
 
 interface ITotalView {
   itemCount: number;
@@ -11,15 +12,16 @@ interface ITotalView {
 
 const TotalsView: FC<ITotalView> = ({ itemCount, orderTotal }) => {
   return (
-    <View>
+    <View style={styles.container}>
       <View style={styles.row}>
         <AppText style={styles.textTitle}>Order Total:</AppText>
-        <AppText style={styles.textPrice}>R{orderTotal}</AppText>
+        <AppText style={styles.textPrice}>R360.00{orderTotal}</AppText>
       </View>
       <View style={styles.row}>
         <AppText style={styles.textTitle}>Total Items:</AppText>
-        <AppText style={styles.textPrice}>{itemCount}</AppText>
+        <AppText style={styles.textPrice}>3{itemCount}</AppText>
       </View>
+      <AppButton style={styles.checkoutButton} title='Continue'/>
     </View>
   );
 };
@@ -27,15 +29,21 @@ const TotalsView: FC<ITotalView> = ({ itemCount, orderTotal }) => {
 export default TotalsView;
 
 const styles = StyleSheet.create({
+  container:{
+    backgroundColor:AppColors.surfaceHover,
+    borderTopWidth: 1
+  },
   row: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: vs(10),
+    margin: vs(20),
+    // padding: vs(10),
   },
   textTitle: {
     flex: 1,
+    color: AppColors.mainText
   },
   textPrice: {
-    // flex:1,
+    color: AppColors.mainText
   },
 });
