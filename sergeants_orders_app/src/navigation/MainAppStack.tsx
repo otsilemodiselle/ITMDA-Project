@@ -1,6 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import AuthStack from "./AuthStack";
 import MainAppBottomTabs from "./MainAppBottomTabs";
+import CheckoutScreen from "../components/cart/CheckoutScreen";
 
 
 
@@ -14,6 +15,7 @@ export default function MainAppStack() {
         >
             <Stack.Screen name="AuthStack" component={AuthStack}/>
             <Stack.Screen name="MainAppBottomTabs" component={MainAppBottomTabs}/>
+            <Stack.Screen name="CheckoutScreen" component={CheckoutScreen}/>
         </Stack.Navigator>
     )
 }

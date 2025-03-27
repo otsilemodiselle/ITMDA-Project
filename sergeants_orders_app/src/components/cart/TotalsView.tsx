@@ -4,6 +4,7 @@ import { s, verticalScale, vs } from "react-native-size-matters";
 import AppText from "../texts/AppText";
 import { AppColors } from "../../styles/colors";
 import AppButton from "../buttons/AppButton";
+import { useNavigation } from "@react-navigation/native";
 
 interface ITotalView {
   itemCount: number;
@@ -11,6 +12,9 @@ interface ITotalView {
 }
 
 const TotalsView: FC<ITotalView> = ({ itemCount, orderTotal }) => {
+
+  const navigation = useNavigation()
+
   return (
     <View style={styles.container}>
       <View style={styles.row}>
@@ -21,7 +25,7 @@ const TotalsView: FC<ITotalView> = ({ itemCount, orderTotal }) => {
         <AppText style={styles.textTitle}>Total Items:</AppText>
         <AppText style={styles.textPrice}>3{itemCount}</AppText>
       </View>
-      <AppButton style={styles.checkoutButton} title='Continue'/>
+      <AppButton style={styles.checkoutButton} title='Continue' onPress={() => navigation.navigate("CheckoutScreen")}/>
     </View>
   );
 };
