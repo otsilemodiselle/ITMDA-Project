@@ -5,6 +5,7 @@ import AppText from "../texts/AppText";
 import { AppColors } from "../../styles/colors";
 import AppButton from "../buttons/AppButton";
 import { useNavigation } from "@react-navigation/native";
+import { sharedPaddingHorizontal } from "../../styles/sharedStyles";
 
 interface ITotalView {
   itemCount: number;
@@ -35,7 +36,9 @@ export default TotalsView;
 const styles = StyleSheet.create({
   container:{
     backgroundColor:AppColors.surfaceHover,
-    borderTopWidth: 1
+    borderTopWidth: 1,
+    paddingHorizontal: sharedPaddingHorizontal,
+    paddingBottom: vs(10)
   },
   row: {
     flexDirection: "row",
@@ -50,4 +53,7 @@ const styles = StyleSheet.create({
   textPrice: {
     color: AppColors.mainText
   },
+  checkoutButton: {
+    marginBottom: vs(10)
+  }
 });
