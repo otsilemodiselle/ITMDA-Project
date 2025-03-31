@@ -5,16 +5,20 @@ import HomeHeader from "../../components/headers/homeHeader";
 import ProfileSectionButton from "../../components/buttons/ProfileSectionButton";
 import { sharedPaddingHorizontal } from "../../styles/sharedStyles";
 import AppText from "../../components/texts/AppText";
+import { useNavigation } from "@react-navigation/native";
 
 const ProfileScreen = () => {
+
+  const navigation = useNavigation()
+
   return (
     <AppSafeView>
       <HomeHeader />
       {/* <AppText>Hello, User!</AppText> */}
       <View style={styles.buttonsContainer}>
-        <ProfileSectionButton title={"My Orders"} onPress={()=>{}}/>
+        <ProfileSectionButton title={"My Orders"} onPress={()=>navigation.navigate("MyOrders")}/>
         <ProfileSectionButton title={"My Rewards Ranking"} onPress={()=>{}}/>
-        <ProfileSectionButton title={"Logout"} onPress={()=>{}}/>
+        <ProfileSectionButton title={"Logout"} onPress={()=> {}}/>
       </View>
     </AppSafeView>
   );
