@@ -1,11 +1,16 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { FC } from 'react'
 import AppText from '../texts/AppText'
 import { AppColors } from '../../styles/colors'
 import { s, vs } from 'react-native-size-matters'
 import { commonStyles } from '../../styles/sharedStyles'
 
-const OrderCard = ({cost, date}) => {
+interface IOrderCard {
+    cost: number;
+    date: string;
+}
+
+const OrderCard : FC<IOrderCard> = ({cost, date}) => {
   return (
     <View style={styles.orderCard}>
       <AppText style={styles.orderCardHeader}>ORDER DETAILS:</AppText>
