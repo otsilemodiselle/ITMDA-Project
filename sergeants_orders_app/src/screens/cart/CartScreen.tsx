@@ -13,7 +13,7 @@ import { AppColors } from "../../styles/colors";
 import { useNavigation } from "@react-navigation/native";
 import { RootState } from "../../store/store";
 import { useDispatch, useSelector } from "react-redux";
-import { removeItemFromCart } from "../../store/reducers/cartSlice";
+import { addItemToCart, removeItemFromCart, removeProductFromCart } from "../../store/reducers/cartSlice";
 
 const CartScreen = () => {
   const navigation = useNavigation();
@@ -32,7 +32,8 @@ const CartScreen = () => {
               {...item}
               price={item.sum}
               onReducedPress={() => dispatch(removeItemFromCart(item))}
-            />
+              onDeletePress={() => dispatch(removeProductFromCart(item))}
+             />
           );
         }}
       />
