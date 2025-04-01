@@ -33,7 +33,8 @@ const CartScreen = () => {
               price={item.sum}
               onReducedPress={() => dispatch(removeItemFromCart(item))}
               onDeletePress={() => dispatch(removeProductFromCart(item))}
-             />
+              onIncreasePress={() => dispatch(addItemToCart(item))} 
+            />
           );
         }}
       />
