@@ -10,13 +10,18 @@ import { sharedPaddingHorizontal } from '../../styles/sharedStyles'
 import { s } from 'react-native-size-matters'
 import AppButton from '../../components/buttons/AppButton'
 import { AppColors } from '../../styles/colors'
+import { useNavigation } from '@react-navigation/native'
+import { RootState } from '../../store/store'
+import { useSelector } from 'react-redux'
 
 const CartScreen = () => {
+  const navigation = useNavigation()
+  const {items} = useSelector((state: RootState) => state.cartSlice)
   return (
     <AppSafeView >
         <HomeHeader/>
         <FlatList style={{paddingHorizontal: s(2)}}
-          data={productsFlat}
+          data={items}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({item}) => {
             return <CartItem {...item}/>
