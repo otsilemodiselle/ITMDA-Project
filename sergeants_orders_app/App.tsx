@@ -3,6 +3,8 @@ import FlashMessage, { showMessage } from "react-native-flash-message";
 import {NavigationContainer} from "@react-navigation/native";
 import MainAppStack from "./src/navigation/MainAppStack";
 import { useFonts } from "expo-font";
+import { store } from "./src/store/store";
+import { Provider } from "react-redux";
 
 export default function App() {
 
@@ -17,10 +19,12 @@ export default function App() {
 
   return (
     <>
-      <FlashMessage position={"top"} />
-      <NavigationContainer>
-        <MainAppStack/>
-      </NavigationContainer>
+      <Provider store={store}>
+        <FlashMessage position={"top"} />
+        <NavigationContainer>
+          <MainAppStack/>
+        </NavigationContainer>
+      </Provider>
     </>
   );
 }
