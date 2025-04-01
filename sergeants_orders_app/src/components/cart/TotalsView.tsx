@@ -13,20 +13,23 @@ interface ITotalView {
 }
 
 const TotalsView: FC<ITotalView> = ({ itemCount, orderTotal }) => {
-
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
       <View style={styles.row}>
         <AppText style={styles.textTitle}>Order Total:</AppText>
-        <AppText style={styles.textPrice}>R360.00{orderTotal}</AppText>
+        <AppText style={styles.textPrice}>R{orderTotal}</AppText>
       </View>
       <View style={styles.row}>
         <AppText style={styles.textTitle}>Total Items:</AppText>
-        <AppText style={styles.textPrice}>3{itemCount}</AppText>
+        <AppText style={styles.textPrice}>{itemCount}</AppText>
       </View>
-      <AppButton style={styles.checkoutButton} title='Continue' onPress={() => navigation.navigate("CheckoutScreen")}/>
+      <AppButton
+        style={styles.checkoutButton}
+        title="Continue"
+        onPress={() => navigation.navigate("CheckoutScreen")}
+      />
     </View>
   );
 };
@@ -34,11 +37,11 @@ const TotalsView: FC<ITotalView> = ({ itemCount, orderTotal }) => {
 export default TotalsView;
 
 const styles = StyleSheet.create({
-  container:{
-    backgroundColor:AppColors.surfaceHover,
+  container: {
+    backgroundColor: AppColors.surfaceHover,
     borderTopWidth: 1,
     paddingHorizontal: sharedPaddingHorizontal,
-    paddingBottom: vs(10)
+    paddingBottom: vs(10),
   },
   row: {
     flexDirection: "row",
@@ -48,12 +51,12 @@ const styles = StyleSheet.create({
   },
   textTitle: {
     flex: 1,
-    color: AppColors.mainText
+    color: AppColors.mainText,
   },
   textPrice: {
-    color: AppColors.mainText
+    color: AppColors.mainText,
   },
   checkoutButton: {
-    marginBottom: vs(10)
-  }
+    marginBottom: vs(10),
+  },
 });

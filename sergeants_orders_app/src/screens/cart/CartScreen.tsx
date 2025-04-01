@@ -13,32 +13,47 @@ import { AppColors } from "../../styles/colors";
 import { useNavigation } from "@react-navigation/native";
 import { RootState } from "../../store/store";
 import { useDispatch, useSelector } from "react-redux";
-import { addItemToCart, removeItemFromCart, removeProductFromCart } from "../../store/reducers/cartSlice";
+import {
+  addItemToCart,
+  removeItemFromCart,
+  removeProductFromCart,
+} from "../../store/reducers/cartSlice";
 
 const CartScreen = () => {
   const navigation = useNavigation();
   const { items } = useSelector((state: RootState) => state.cartSlice);
   const dispatch = useDispatch();
+  const totalProductsPricesSum = items.reduce((acc, item) => acc + item.sum, 0);
+  const totalProductsQty = items.reduce((acc, item) => acc + item.qty, 0);
   return (
     <AppSafeView>
       <HomeHeader />
-      <FlatList
-        style={{ paddingHorizontal: s(2) }}
-        data={items}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => {
-          return (
-            <CartItem
-              {...item}
-              price={item.sum}
-              onReducedPress={() => dispatch(removeItemFromCart(item))}
-              onDeletePress={() => dispatch(removeProductFromCart(item))}
-              onIncreasePress={() => dispatch(addItemToCart(item))} 
-            />
-          );
-        }}
-      />
-      <TotalsView />
+      {items.length > 0 ? (
+        <View style={styles.cartContainer}>
+          <FlatList
+            style={{ paddingHorizontal: s(2) }}
+            data={items}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => {
+              return (
+                <CartItem
+                  {...item}
+                  price={item.sum}
+                  onReducedPress={() => dispatch(removeItemFromCart(item))}
+                  onDeletePress={() => dispatch(removeProductFromCart(item))}
+                  onIncreasePress={() => dispatch(addItemToCart(item))}
+                />
+              );
+            }}
+          />
+          <TotalsView
+            orderTotal={totalProductsPricesSum}
+            itemCount={totalProductsQty}
+          />
+        </View>
+      ) : (
+        <EmptyCart />
+      )}
     </AppSafeView>
   );
 };
@@ -46,7 +61,9 @@ const CartScreen = () => {
 export default CartScreen;
 
 const styles = StyleSheet.create({
-  checkoutButton: {
-    backgroundColor: AppColors.surfaceHover,
+  cartContainer: {
+    flexDirection: "column",
+    justifyContent: "space-between",
+    flex: 1,
   },
 });
