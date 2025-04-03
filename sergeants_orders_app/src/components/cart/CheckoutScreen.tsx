@@ -7,20 +7,30 @@ import { sharedPaddingHorizontal } from '../../styles/sharedStyles'
 import { vs } from 'react-native-size-matters'
 import AppButton from '../buttons/AppButton'
 import { IS_Android } from '../../constants/constants'
+import { useForm } from 'react-hook-form'
+import AppTextInputController from '../inputs/AppTextInputController'
 
 const CheckoutScreen = () => {
+
+  const {control, handleSubmit} = useForm({})
+
+  const saveOrder = (formData) => {
+    console.log(formData)
+  }
+
   return (
     <AppSafeView>
       <HomeHeader/>
       <View style={styles.checkoutContainer}>
         <View style={styles.container}>
-          <AppTextInput placeholder='Name on Card'/>
-          <AppTextInput placeholder='Card Number'/>
-          <AppTextInput placeholder='Expiry Date MMYYYY'/>
-          <AppTextInput placeholder='CVV'/>
+          <AppTextInputController control={control} name={"phoneNumber"} placeholder='Phone Number'/>
+          <AppTextInputController control={control} name={"cardName"} placeholder='Name on Card'/>
+          <AppTextInputController control={control} name={"cardNumber"} placeholder='Card Number'/>
+          <AppTextInputController control={control} name={"cardExpiry"} placeholder='Expiry Date MMYYYY'/>
+          <AppTextInputController control={control} name={"cardCVV"} placeholder='CVV'/>
         </View>
         <View style={styles.payButtonContainer}>
-          <AppButton title='Pay'></AppButton>
+          <AppButton title='Pay' onPress={handleSubmit(saveOrder)}/>
         </View>
       </View>
     </AppSafeView>
