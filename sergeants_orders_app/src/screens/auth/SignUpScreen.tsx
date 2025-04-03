@@ -13,25 +13,81 @@ import { useState } from "react";
 import AppButton from "../../components/buttons/AppButton";
 import { AppColors } from "../../styles/colors";
 import { useNavigation } from "@react-navigation/native";
+import AppTextInputController from "../../components/inputs/AppTextInputController";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+
+const schema = yup.object({
+  inputtedRegistrationEmail: yup
+    .string()
+    .required("Email is required")
+    .email("Enter a valid email address"),
+
+  inputtedRegistrationUsername: yup
+    .string()
+    .required("Username is required")
+    .min(3, "Username must be at least 3 characters")
+    .max(20, "Username must be at most 20 characters")
+    .matches(
+      /^\w+$/,
+      "Username can only contain letters, numbers, and underscores"
+    ),
+
+  inputtedRegistrationPassword: yup
+    .string()
+    .required("Password is required")
+    .min(8, "Password must be at least 8 characters")
+    .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
+    .matches(/[a-z]/, "Password must contain at least one lowercase letter")
+    .matches(/\d/, "Password must contain at least one number")
+    .matches(
+      /[@$!%*?&]/,
+      "Password must contain at least one special character"
+    ),
+});
+
+type FormData = yup.InferType<typeof schema>;
 
 const SignUpScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userName, setUserName] = useState("");
-  const navigation = useNavigation()
+  const navigation = useNavigation();
+  const { control, handleSubmit } = useForm({
+    resolver: yupResolver(schema),
+  });
+  const attemptRegistration = (formData: FormData) => {
+    console.log(formData);
+  };
 
   return (
     <AppSafeView style={styles.container}>
       <Image source={IMAGES.appLogo} style={styles.logo} />
-      <AppTextInput placeholder="Username" onChangeText={setUserName}/>
-      <AppTextInput placeholder="Email" onChangeText={setEmail} />
-      <AppTextInput
+      <AppTextInputController
+        placeholder="Username"
+        onChangeText={setUserName}
+        control={control}
+        name={"inputtedRegistrationUsername"}
+      />
+      <AppTextInputController
+        placeholder="Email"
+        onChangeText={setEmail}
+        control={control}
+        name={"inputtedRegistrationEmail"}
+      />
+      <AppTextInputController
         placeholder="Password"
         onChangeText={setPassword}
         secureTextEntry
+        control={control}
+        name={"inputtedRegistrationPassword"}
       />
       <AppText style={styles.appName}>Sergeant's Orders!</AppText>
-      <AppButton title="Create Account" />
+      <AppButton
+        title="Create Account"
+        onPress={handleSubmit(attemptRegistration)}
+      />
       <AppButton
         title="Login"
         style={styles.signInButton}
