@@ -41,13 +41,15 @@ const schema = yup.object({
     .matches(/^\d{3,4}$/, "CVV must be 3 or 4 digits"),
 }).required();
 
+type FormData = yup.InferType<typeof schema>
+
 
 const CheckoutScreen = () => {
   const { control, handleSubmit } = useForm({
     resolver: yupResolver(schema)
   });
 
-  const saveOrder = (formData) => {
+  const saveOrder = (formData: FormData) => {
     console.log(formData);
   };
 
