@@ -20,6 +20,8 @@ import { useForm } from "react-hook-form";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../config/firebase";
 import { showMessage } from "react-native-flash-message";
+import { useDispatch } from "react-redux";
+import { setUserData } from "../../store/reducers/userSlice";
 
 const schema = yup.object({
   inputtedRegistrationEmail: yup
@@ -54,6 +56,7 @@ type FormData = yup.InferType<typeof schema>;
 
 const SignUpScreen = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch()
 
   const onSignUpPress = async (data: FormData) => {
     try {
@@ -64,6 +67,7 @@ const SignUpScreen = () => {
       );
       Alert.alert("Welcome, Soldier!");
       navigation.navigate("MainAppBottomTabs");
+      dispatch(setUserData(userCredential.user))
     } catch (error: any) {
       let errorMessage = "";
       console.log(error.code);
