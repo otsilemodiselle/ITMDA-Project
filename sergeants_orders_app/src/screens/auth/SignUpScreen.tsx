@@ -17,6 +17,9 @@ import AppTextInputController from "../../components/inputs/AppTextInputControll
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../config/firebase";
+import { showMessage } from "react-native-flash-message";
 
 const schema = yup.object({
   inputtedRegistrationEmail: yup
@@ -50,14 +53,37 @@ const schema = yup.object({
 type FormData = yup.InferType<typeof schema>;
 
 const SignUpScreen = () => {
-
   const navigation = useNavigation();
 
-  const onSignUpPress = () => {
-    Alert.alert("Welcome, Soldier!")
-    navigation.navigate("MainAppBottomTabs")
-  }
-  
+  const onSignUpPress = async (data: FormData) => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        data.inputtedRegistrationEmail,
+        data.inputtedRegistrationPassword
+      );
+      Alert.alert("Welcome, Soldier!");
+      navigation.navigate("MainAppBottomTabs");
+    } catch (error: any) {
+      let errorMessage = "";
+      console.log(error.code);
+      if (error.code === "auth/email-already-in-use") {
+        errorMessage = "Email address already in use!";
+      } else if (error.code === "auth/invalid-email") {
+        errorMessage = "Email address is invalid!";
+      } else if (error.code === "auth/weak-password") {
+        errorMessage = "Password is too weak!";
+      } else {
+        errorMessage = "An error occurred during sign-up";
+      }
+
+      showMessage({
+        type: "danger",
+        message: errorMessage,
+      });
+    }
+  };
+
   const { control, handleSubmit } = useForm({
     resolver: yupResolver(schema),
   });
@@ -83,10 +109,7 @@ const SignUpScreen = () => {
         name={"inputtedRegistrationPassword"}
       />
       <AppText style={styles.appName}>Sergeant's Orders!</AppText>
-      <AppButton
-        title="Create Account"
-        onPress={handleSubmit(onSignUpPress)}
-      />
+      <AppButton title="Create Account" onPress={handleSubmit(onSignUpPress)} />
       <AppButton
         title="Login"
         style={styles.signInButton}
