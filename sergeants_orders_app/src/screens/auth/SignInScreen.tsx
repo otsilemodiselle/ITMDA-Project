@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, Alert } from "react-native";
 import React from "react";
 import AppSafeView from "../../components/Views/AppSafeView";
 import AppText from "../../components/texts/AppText";
@@ -8,7 +8,6 @@ import {
   sharedPaddingHorizontal,
 } from "../../styles/sharedStyles";
 import { IMAGES } from "../../constants/images-paths";
-import AppTextInput from "../../components/inputs/AppTextInput";
 import { useState } from "react";
 import AppButton from "../../components/buttons/AppButton";
 import { AppColors } from "../../styles/colors";
@@ -17,6 +16,8 @@ import AppTextInputController from "../../components/inputs/AppTextInputControll
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../config/firebase";
 
 const schema = yup.object({
   inputtedLoginEmail: yup
@@ -40,40 +41,45 @@ const schema = yup.object({
 type FormData = yup.InferType<typeof schema>;
 
 const SignInScreen = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const navigation = useNavigation();
+
+  const onLoginPress = async (data: FormData) => {
+    console.log(data);
+
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        data.inputtedLoginEmail,
+        data.inputtedLoginPassword
+      );
+      navigation.navigate("MainAppBottomTabs");
+      console.log(userCredential)
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
   const { control, handleSubmit } = useForm({
     resolver: yupResolver(schema),
   });
-  const attemptLogin = (formData: FormData) => {
-    console.log(formData);
-  };
 
   return (
     <AppSafeView style={styles.container}>
       <Image source={IMAGES.appLogo} style={styles.logo} />
       <AppTextInputController
         placeholder="Email"
-        onChangeText={setEmail}
+        keyboardType="email-address"
         control={control}
         name={"inputtedLoginEmail"}
       />
       <AppTextInputController
         placeholder="Password"
-        onChangeText={setPassword}
         secureTextEntry
         control={control}
         name={"inputtedLoginPassword"}
       />
       <AppText style={styles.appName}>Sergeant's Orders!</AppText>
-      <AppButton
-        title="Login"
-        onPress={handleSubmit((data) => {
-          attemptLogin(data);
-          navigation.navigate("MainAppBottomTabs");
-        })}
-      />
+      <AppButton title="Login" onPress={handleSubmit(onLoginPress)} />
       <AppButton
         title="Sign Up"
         style={styles.registerButton}
