@@ -9,6 +9,7 @@ import { products } from "../../data/products";
 import { s, vs } from "react-native-size-matters";
 import { useDispatch } from "react-redux";
 import { addItemToCart } from "../../store/reducers/cartSlice";
+import { showMessage } from "react-native-flash-message";
 
 const HomeScreen = () => {
   const dispatch = useDispatch()
@@ -23,7 +24,13 @@ const HomeScreen = () => {
             imageURL={item.imageURL}
             title={item.title}
             price={item.price.toFixed(2)}
-            onAddToCartPress={() => {dispatch(addItemToCart(item))}}
+            onAddToCartPress={() => {
+              dispatch(addItemToCart(item))
+              showMessage({
+                      type:"success",
+                      message: "Item added!"
+                    })
+            }}
           />
         )}
         renderSectionHeader={({ section: { title } }) => (
