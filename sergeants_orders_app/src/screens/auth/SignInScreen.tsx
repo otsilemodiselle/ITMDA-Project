@@ -18,6 +18,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../config/firebase";
+import { showMessage } from "react-native-flash-message";
 
 const schema = yup.object({
   inputtedLoginEmail: yup
@@ -54,8 +55,21 @@ const SignInScreen = () => {
       );
       navigation.navigate("MainAppBottomTabs");
       console.log(userCredential)
-    } catch (error) {
-      console.log(error)
+    } catch (error: any) {
+      let errorMessage = ""
+      console.log(error.code)
+      if (error.code === "auth/user-not-found") {
+        errorMessage = "User not found!"
+      } else if ( error.code === "auth/invalid-credential") {
+        errorMessage = "Incorrect email or password!"
+      } else {
+        errorMessage = "An error occurred!"
+      }
+
+      showMessage({
+        type:"danger",
+        message: errorMessage
+      })
     }
   };
 
