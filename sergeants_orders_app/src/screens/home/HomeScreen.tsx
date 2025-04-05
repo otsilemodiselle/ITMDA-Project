@@ -1,5 +1,5 @@
 import { SectionList, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AppSafeView from "../../components/Views/AppSafeView";
 import HomeHeader from "../../components/headers/homeHeader";
 import { AppColors } from "../../styles/colors";
@@ -10,14 +10,37 @@ import { s, vs } from "react-native-size-matters";
 import { useDispatch } from "react-redux";
 import { addItemToCart } from "../../store/reducers/cartSlice";
 import { showMessage } from "react-native-flash-message";
+import { getProductsData } from "../../config/dataServices";
 
 const HomeScreen = () => {
   const dispatch = useDispatch()
+  const [products, setProducts] = useState([])
+
+  const fetchData = async () => {
+    const data = await getProductsData()
+    console.log(data);
+    setProducts(data)
+  }
+  useEffect(() => {
+    fetchData()
+  },[])
+
+  function groupProductsByCategory(products) {
+    const grouped = products.reduce((acc, item) => {
+      const category = item.category;
+      if (!acc[category]) acc[category] = [];
+      acc[category].push(item);
+      return acc;
+    }, {});
+  
+    return Object.entries(grouped).map(([title, data]) => ({ title, data }));
+  }
+
   return (
     <AppSafeView style={styles.homeContainer}>
       <HomeHeader />
       <SectionList
-        sections={products}
+        sections={groupProductsByCategory(products)}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <ProductCard
