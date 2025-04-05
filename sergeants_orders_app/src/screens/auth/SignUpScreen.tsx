@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, Alert } from "react-native";
 import React from "react";
 import AppSafeView from "../../components/Views/AppSafeView";
 import AppText from "../../components/texts/AppText";
@@ -50,35 +50,34 @@ const schema = yup.object({
 type FormData = yup.InferType<typeof schema>;
 
 const SignUpScreen = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [userName, setUserName] = useState("");
+
   const navigation = useNavigation();
+
+  const onSignUpPress = () => {
+    Alert.alert("Welcome, Soldier!")
+    navigation.navigate("MainAppBottomTabs")
+  }
+  
   const { control, handleSubmit } = useForm({
     resolver: yupResolver(schema),
   });
-  const attemptRegistration = (formData: FormData) => {
-    console.log(formData);
-  };
 
   return (
     <AppSafeView style={styles.container}>
       <Image source={IMAGES.appLogo} style={styles.logo} />
       <AppTextInputController
         placeholder="Username"
-        onChangeText={setUserName}
         control={control}
         name={"inputtedRegistrationUsername"}
       />
       <AppTextInputController
         placeholder="Email"
-        onChangeText={setEmail}
         control={control}
+        keyboardType="email-address"
         name={"inputtedRegistrationEmail"}
       />
       <AppTextInputController
         placeholder="Password"
-        onChangeText={setPassword}
         secureTextEntry
         control={control}
         name={"inputtedRegistrationPassword"}
@@ -86,7 +85,7 @@ const SignUpScreen = () => {
       <AppText style={styles.appName}>Sergeant's Orders!</AppText>
       <AppButton
         title="Create Account"
-        onPress={handleSubmit(attemptRegistration)}
+        onPress={handleSubmit(onSignUpPress)}
       />
       <AppButton
         title="Login"
