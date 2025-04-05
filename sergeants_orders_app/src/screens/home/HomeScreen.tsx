@@ -23,7 +23,7 @@ const HomeScreen = () => {
           <ProductCard
             imageURL={item.imageURL}
             title={item.title}
-            price={item.price.toFixed(2)}
+            price={item.price}
             onAddToCartPress={() => {
               dispatch(addItemToCart(item))
               showMessage({
