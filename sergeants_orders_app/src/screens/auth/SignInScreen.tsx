@@ -19,6 +19,8 @@ import { useForm } from "react-hook-form";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../config/firebase";
 import { showMessage } from "react-native-flash-message";
+import { useDispatch } from "react-redux";
+import { setUserData } from "../../store/reducers/userSlice";
 
 const schema = yup.object({
   inputtedLoginEmail: yup
@@ -44,6 +46,8 @@ type FormData = yup.InferType<typeof schema>;
 const SignInScreen = () => {
   const navigation = useNavigation();
 
+  const dispatch = useDispatch()
+
   const onLoginPress = async (data: FormData) => {
     console.log(data);
 
@@ -54,7 +58,8 @@ const SignInScreen = () => {
         data.inputtedLoginPassword
       );
       navigation.navigate("MainAppBottomTabs");
-      console.log(userCredential)
+      console.log(JSON.stringify(userCredential,null,3))
+      dispatch(setUserData(userCredential.user))
     } catch (error: any) {
       let errorMessage = ""
       console.log(error.code)
