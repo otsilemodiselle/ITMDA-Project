@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import AppSafeView from "../Views/AppSafeView";
 import HomeHeader from "../headers/homeHeader";
@@ -13,6 +13,10 @@ import * as yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup"
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
+import { addDoc, collection, doc } from "firebase/firestore";
+import { db } from "../../config/firebase";
+import { showMessage } from "react-native-flash-message";
+import { useNavigation } from "@react-navigation/native";
 
 const schema = yup.object({
   phoneNumber: yup
@@ -50,11 +54,35 @@ const CheckoutScreen = () => {
   const { control, handleSubmit } = useForm({
     resolver: yupResolver(schema)
   });
+  const navigation = useNavigation()
 
   const {userData} = useSelector((state:RootState) => state.userSlice)
+  const {items} = useSelector((state: RootState) => state.cartSlice)
+  const totalProductsPriceSum = items.reduce((acc, item) => acc + item.sum, 0);
 
-  const saveOrder = (formData: FormData) => {
-    console.log(formData);
+  const saveOrder = async (formData: FormData) => {
+
+    try{
+
+      const orderBody = {
+        ...formData,
+        items,
+        totalProductsPriceSum,
+        createdAt: new Date(),
+      }
+
+      const userOrderRef = collection(doc(db, "users", userData.uid), "orders")
+      const orderRef = await addDoc(userOrderRef, orderBody)
+
+      showMessage({type:"success", message: "Order Places Successfully"})
+      navigation.goBack()
+
+      console.log(formData);
+    } catch(error){
+      console.error("Error saving order:", error)
+      showMessage({type:"danger", message: "Error Occurred"})
+    }
+    
   };
 
   return (
