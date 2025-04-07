@@ -56,7 +56,7 @@ type FormData = yup.InferType<typeof schema>;
 
 const SignUpScreen = () => {
   const navigation = useNavigation();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const onSignUpPress = async (data: FormData) => {
     try {
@@ -67,7 +67,10 @@ const SignUpScreen = () => {
       );
       Alert.alert("Welcome, Soldier!");
       navigation.navigate("MainAppBottomTabs");
-      dispatch(setUserData(userCredential.user))
+      const userDataObj = {
+        uid: userCredential.user.uid,
+      };
+      dispatch(setUserData(userDataObj));
     } catch (error: any) {
       let errorMessage = "";
       console.log(error.code);

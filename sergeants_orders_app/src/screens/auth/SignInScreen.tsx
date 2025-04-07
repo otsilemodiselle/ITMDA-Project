@@ -46,7 +46,7 @@ type FormData = yup.InferType<typeof schema>;
 const SignInScreen = () => {
   const navigation = useNavigation();
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const onLoginPress = async (data: FormData) => {
     console.log(data);
@@ -58,23 +58,26 @@ const SignInScreen = () => {
         data.inputtedLoginPassword
       );
       navigation.navigate("MainAppBottomTabs");
-      console.log(JSON.stringify(userCredential,null,3))
-      dispatch(setUserData(userCredential.user))
+      console.log(JSON.stringify(userCredential, null, 3));
+      const userDataObj = {
+        uid: userCredential.user.uid,
+      };
+      dispatch(setUserData(userDataObj));
     } catch (error: any) {
-      let errorMessage = ""
-      console.log(error.code)
+      let errorMessage = "";
+      console.log(error.code);
       if (error.code === "auth/user-not-found") {
-        errorMessage = "User not found!"
-      } else if ( error.code === "auth/invalid-credential") {
-        errorMessage = "Incorrect email or password!"
+        errorMessage = "User not found!";
+      } else if (error.code === "auth/invalid-credential") {
+        errorMessage = "Incorrect email or password!";
       } else {
-        errorMessage = "An error occurred!"
+        errorMessage = "An error occurred!";
       }
 
       showMessage({
-        type:"danger",
-        message: errorMessage
-      })
+        type: "danger",
+        message: errorMessage,
+      });
     }
   };
 
