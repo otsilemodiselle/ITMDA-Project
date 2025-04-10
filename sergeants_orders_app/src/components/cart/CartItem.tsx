@@ -6,25 +6,28 @@ import { s, vs } from "react-native-size-matters";
 import { AppFonts } from "../../styles/fonts";
 import { AppColors } from "../../styles/colors";
 import { commonStyles } from "../../styles/sharedStyles";
+import { useTranslation } from "react-i18next";
 
-interface ICartItem{
-    title: string,
-    price: string | number,
-    imageURL: string,
-    qty: number,
-    onDeletePress: () => void,
-    onIncreasePress: () => void,
-    onReducedPress: () => void,
+interface ICartItem {
+  title: string;
+  price: string | number;
+  imageURL: string;
+  qty: number;
+  onDeletePress: () => void;
+  onIncreasePress: () => void;
+  onReducedPress: () => void;
 }
 
-const CartItem :FC<ICartItem> = ({
-    title,
-    price,
-    imageURL,
-    qty,
-    onDeletePress,
-    onIncreasePress,
-    onReducedPress}) => {
+const CartItem: FC<ICartItem> = ({
+  title,
+  price,
+  imageURL,
+  qty,
+  onDeletePress,
+  onIncreasePress,
+  onReducedPress,
+}) => {
+  const { t } = useTranslation();
   return (
     <View style={styles.productCard}>
       <View style={styles.cartItemActionsContainer}>
@@ -58,17 +61,14 @@ const CartItem :FC<ICartItem> = ({
           <AppText style={styles.price}>R{price}</AppText>
           <TouchableOpacity onPress={onDeletePress}>
             <View style={styles.deleteCartItemSection}>
-              <AppText style={styles.deleteCaption}>Delete</AppText>
+              <AppText style={styles.deleteCaption}>{t("delete_cartItem")}</AppText>
               <Ionicons name="trash" size={25} color={AppColors.accentGray} />
             </View>
           </TouchableOpacity>
         </View>
       </View>
       <View style={styles.imageContainer}>
-        <Image
-          style={styles.productImage}
-          source={{ uri: imageURL }}
-        />
+        <Image style={styles.productImage} source={{ uri: imageURL }} />
       </View>
     </View>
   );
