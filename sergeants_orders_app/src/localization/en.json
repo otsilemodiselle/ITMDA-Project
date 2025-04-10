@@ -50,7 +50,10 @@
     "profile_language": "Language",
     "profile_logout": "Sign Out",
     "languages_header": "Change Language",
-    "language_confirmButton": "Confirm"
+    "language_confirmButton": "Confirm",
+    "cart_empty": "Your cart is empty",
+    "go_browse": "Browse menu NOW!",
+    "go_browseButton": "Yes, Sir!"
 
 
 
