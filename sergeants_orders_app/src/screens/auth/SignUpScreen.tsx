@@ -22,40 +22,37 @@ import { auth } from "../../config/firebase";
 import { showMessage } from "react-native-flash-message";
 import { useDispatch } from "react-redux";
 import { setUserData } from "../../store/reducers/userSlice";
-
-const schema = yup.object({
-  inputtedRegistrationEmail: yup
-    .string()
-    .required("Email is required")
-    .email("Enter a valid email address"),
-
-  inputtedRegistrationUsername: yup
-    .string()
-    .required("Username is required")
-    .min(3, "Username must be at least 3 characters")
-    .max(20, "Username must be at most 20 characters")
-    .matches(
-      /^\w+$/,
-      "Username can only contain letters, numbers, and underscores"
-    ),
-
-  inputtedRegistrationPassword: yup
-    .string()
-    .required("Password is required")
-    .min(8, "Password must be at least 8 characters")
-    .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
-    .matches(/[a-z]/, "Password must contain at least one lowercase letter")
-    .matches(/\d/, "Password must contain at least one number")
-    .matches(
-      /[@$!%*?&]/,
-      "Password must contain at least one special character"
-    ),
-});
+import { useTranslation } from "react-i18next";
 
 type FormData = yup.InferType<typeof schema>;
 
 const SignUpScreen = () => {
   const navigation = useNavigation();
+  const { t } = useTranslation();
+
+  const schema = yup.object({
+    inputtedRegistrationEmail: yup
+      .string()
+      .required(t("missing_email"))
+      .email(t("invalid_email")),
+
+    inputtedRegistrationUsername: yup
+      .string()
+      .required(t("missing_username"))
+      .min(3, t("username_minimum"))
+      .max(20, t("username_maximum"))
+      .matches(/^\w+$/, t("username_symbol")),
+
+    inputtedRegistrationPassword: yup
+      .string()
+      .required(t("missing_password"))
+      .min(8, t("short_password"))
+      .matches(/[A-Z]/, t("missing_uppercase"))
+      .matches(/[a-z]/, t("missing_lowercase"))
+      .matches(/\d/, t("missing_number"))
+      .matches(/[@$!%*?&]/, t("missing_symbol")),
+  });
+
   const dispatch = useDispatch();
 
   const onSignUpPress = async (data: FormData) => {
@@ -65,7 +62,7 @@ const SignUpScreen = () => {
         data.inputtedRegistrationEmail,
         data.inputtedRegistrationPassword
       );
-      Alert.alert("Welcome, Soldier!");
+      Alert.alert(t("signup_welcome"));
       navigation.navigate("MainAppBottomTabs");
       const userDataObj = {
         uid: userCredential.user.uid,
@@ -75,13 +72,13 @@ const SignUpScreen = () => {
       let errorMessage = "";
       console.log(error.code);
       if (error.code === "auth/email-already-in-use") {
-        errorMessage = "Email address already in use!";
+        errorMessage = t("email_used");
       } else if (error.code === "auth/invalid-email") {
-        errorMessage = "Email address is invalid!";
+        errorMessage = t("invalid_email");
       } else if (error.code === "auth/weak-password") {
-        errorMessage = "Password is too weak!";
+        errorMessage = t("weak_password");
       } else {
-        errorMessage = "An error occurred during sign-up";
+        errorMessage = t("signup_error");
       }
 
       showMessage({
@@ -99,26 +96,29 @@ const SignUpScreen = () => {
     <AppSafeView style={styles.container}>
       <Image source={IMAGES.appLogo} style={styles.logo} />
       <AppTextInputController
-        placeholder="Username"
+        placeholder={t("username_placeholder")}
         control={control}
         name={"inputtedRegistrationUsername"}
       />
       <AppTextInputController
-        placeholder="Email"
+        placeholder={t("email_placeholder")}
         control={control}
         keyboardType="email-address"
         name={"inputtedRegistrationEmail"}
       />
       <AppTextInputController
-        placeholder="Password"
+        placeholder={t("password_placeholder")}
         secureTextEntry
         control={control}
         name={"inputtedRegistrationPassword"}
       />
       <AppText style={styles.appName}>Sergeant's Orders!</AppText>
-      <AppButton title="Create Account" onPress={handleSubmit(onSignUpPress)} />
       <AppButton
-        title="Login"
+        title={t("create_account_button")}
+        onPress={handleSubmit(onSignUpPress)}
+      />
+      <AppButton
+        title={t("signin_button")}
         style={styles.signInButton}
         textColor={AppColors.accentYellow}
         onPress={() => navigation.navigate("SignInScreen")}
