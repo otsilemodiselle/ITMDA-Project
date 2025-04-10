@@ -8,24 +8,34 @@ import AppText from "../../components/texts/AppText";
 import { useNavigation } from "@react-navigation/native";
 import { SheetManager } from "react-native-actions-sheet";
 import LanguageBottomSheet from "../../components/language/LanguageBottomSheet";
+import { useTranslation } from "react-i18next";
 
 const ProfileScreen = () => {
-
-  const navigation = useNavigation()
+  const navigation = useNavigation();
+  const { t } = useTranslation();
 
   return (
     <AppSafeView>
       <HomeHeader />
       {/* <AppText>Hello, User!</AppText> */}
       <View style={styles.buttonsContainer}>
-        <ProfileSectionButton title={"My Orders"} onPress={()=>navigation.navigate("MyOrders")}/>
-        <ProfileSectionButton title={"My Rewards Ranking"} onPress={()=>{}}/>
-        <ProfileSectionButton title={"Language"} onPress={()=>{
-          SheetManager.show("LANG_SHEET")
-        }}/>
-        <ProfileSectionButton title={"Logout"} onPress={()=> {}}/>
+        <ProfileSectionButton
+          title={t("profile_myOrders")}
+          onPress={() => navigation.navigate("MyOrders")}
+        />
+        <ProfileSectionButton
+          title={t("profile_myRewards")}
+          onPress={() => {}}
+        />
+        <ProfileSectionButton
+          title={t("profile_language")}
+          onPress={() => {
+            SheetManager.show("LANG_SHEET");
+          }}
+        />
+        <ProfileSectionButton title={t("profile_logout")} onPress={() => {}} />
       </View>
-      <LanguageBottomSheet/>
+      <LanguageBottomSheet />
     </AppSafeView>
   );
 };
