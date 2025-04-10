@@ -7,9 +7,11 @@ import { AppColors } from "../../styles/colors";
 import AppButton from "../../components/buttons/AppButton";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 
 const Empty = () => {
   const navigation = useNavigation();
+  const { t } = useTranslation();
   return (
     <View style={styles.container}>
       <MaterialCommunityIcons
@@ -18,10 +20,10 @@ const Empty = () => {
         color={AppColors.mainText}
         style={styles.foodIcon}
       />
-      <AppText style={styles.title}>Your Cart Is Empty</AppText>
-      <AppText style={styles.subTitle}>Browse menu NOW!</AppText>
+      <AppText style={styles.title}>{t("cart_empty")}</AppText>
+      <AppText style={styles.subTitle}>{t("go_browse")}</AppText>
       <AppButton
-        title={"Yes, Sir!"}
+        title={t("go_browseButton")}
         style={styles.redirectToMenuButton}
         onPress={() => navigation.navigate("Home")}
       />
