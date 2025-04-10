@@ -6,6 +6,7 @@ import { AppColors } from "../../styles/colors";
 import AppButton from "../buttons/AppButton";
 import { useNavigation } from "@react-navigation/native";
 import { sharedPaddingHorizontal } from "../../styles/sharedStyles";
+import { useTranslation } from "react-i18next";
 
 interface ITotalView {
   itemCount: number;
@@ -14,20 +15,21 @@ interface ITotalView {
 
 const TotalsView: FC<ITotalView> = ({ itemCount, orderTotal }) => {
   const navigation = useNavigation();
+  const { t } = useTranslation();
 
   return (
     <View style={styles.container}>
       <View style={styles.row}>
-        <AppText style={styles.textTitle}>Order Total:</AppText>
+        <AppText style={styles.textTitle}>{t("checkout_total")}</AppText>
         <AppText style={styles.textPrice}>R{orderTotal}</AppText>
       </View>
       <View style={styles.row}>
-        <AppText style={styles.textTitle}>Total Items:</AppText>
+        <AppText style={styles.textTitle}>{t("checkout_quantity")}</AppText>
         <AppText style={styles.textPrice}>{itemCount}</AppText>
       </View>
       <AppButton
         style={styles.checkoutButton}
-        title="Continue"
+        title={t("checkout_continueButton")}
         onPress={() => navigation.navigate("CheckoutScreen")}
       />
     </View>
