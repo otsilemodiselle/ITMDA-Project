@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Image, Alert } from "react-native";
-import React from "react";
+import React, { useTransition } from "react";
 import AppSafeView from "../../components/Views/AppSafeView";
 import AppText from "../../components/texts/AppText";
 import { vs, s } from "react-native-size-matters";
@@ -21,30 +21,29 @@ import { auth } from "../../config/firebase";
 import { showMessage } from "react-native-flash-message";
 import { useDispatch } from "react-redux";
 import { setUserData } from "../../store/reducers/userSlice";
-
-const schema = yup.object({
-  inputtedLoginEmail: yup
-    .string()
-    .required("Email is required")
-    .email("Enter a valid email address"),
-
-  inputtedLoginPassword: yup
-    .string()
-    .required("Password is required")
-    .min(8, "Password must be at least 8 characters")
-    .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
-    .matches(/[a-z]/, "Password must contain at least one lowercase letter")
-    .matches(/\d/, "Password must contain at least one number")
-    .matches(
-      /[@$!%*?&]/,
-      "Password must contain at least one special character"
-    ),
-});
+import { useTranslation } from "react-i18next";
 
 type FormData = yup.InferType<typeof schema>;
 
 const SignInScreen = () => {
   const navigation = useNavigation();
+  const { t } = useTranslation();
+
+  const schema = yup.object({
+    inputtedLoginEmail: yup
+      .string()
+      .required(t("missing_email"))
+      .email(t("invalid_email")),
+
+    inputtedLoginPassword: yup
+      .string()
+      .required(t("missing_password"))
+      .min(8, t("short_password"))
+      .matches(/[A-Z]/, t("missing_uppercase"))
+      .matches(/[a-z]/, t("missing_lowercase"))
+      .matches(/\d/, t("missing_number"))
+      .matches(/[@$!%*?&]/, t("missing_symbol")),
+  });
 
   const dispatch = useDispatch();
 
@@ -67,11 +66,11 @@ const SignInScreen = () => {
       let errorMessage = "";
       console.log(error.code);
       if (error.code === "auth/user-not-found") {
-        errorMessage = "User not found!";
+        errorMessage = t("user_unknown");
       } else if (error.code === "auth/invalid-credential") {
-        errorMessage = "Incorrect email or password!";
+        errorMessage = t("wrong_credentials");
       } else {
-        errorMessage = "An error occurred!";
+        errorMessage = t("login_error");
       }
 
       showMessage({
@@ -83,27 +82,34 @@ const SignInScreen = () => {
 
   const { control, handleSubmit } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: {
+      inputtedLoginEmail: "test1@gmail.com",
+      inputtedLoginPassword: "P@ssw0rd",
+    },
   });
 
   return (
     <AppSafeView style={styles.container}>
       <Image source={IMAGES.appLogo} style={styles.logo} />
       <AppTextInputController
-        placeholder="Email"
+        placeholder={t("email_placeholder")}
         keyboardType="email-address"
         control={control}
         name={"inputtedLoginEmail"}
       />
       <AppTextInputController
-        placeholder="Password"
+        placeholder={t("password_placeholder")}
         secureTextEntry
         control={control}
         name={"inputtedLoginPassword"}
       />
       <AppText style={styles.appName}>Sergeant's Orders!</AppText>
-      <AppButton title="Login" onPress={handleSubmit(onLoginPress)} />
       <AppButton
-        title="Sign Up"
+        title={t("signin_button")}
+        onPress={handleSubmit(onLoginPress)}
+      />
+      <AppButton
+        title={t("signup_button")}
         style={styles.registerButton}
         textColor={AppColors.accentYellow}
         onPress={() => navigation.navigate("SignUpScreen")}
