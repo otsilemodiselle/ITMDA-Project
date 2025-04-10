@@ -10,82 +10,83 @@ import { IS_Android } from "../../constants/constants";
 import { useForm } from "react-hook-form";
 import AppTextInputController from "../inputs/AppTextInputController";
 import * as yup from "yup";
-import {yupResolver} from "@hookform/resolvers/yup"
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import { addDoc, collection, doc } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { showMessage } from "react-native-flash-message";
 import { useNavigation } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 
-const schema = yup.object({
-  phoneNumber: yup
-    .string()
-    .required("Phone number is required")
-    .matches(/^\d{10}$/, "Phone number must be exactly 10 digits"),
-
-  cardName: yup
-    .string()
-    .required("Cardholder name is required")
-    .matches(/^[a-zA-Z\s]+$/, "Cardholder name must only contain letters and spaces")
-    .min(3, "Cardholder name is too short")
-    .max(50, "Cardholder name is too long"),
-
-  cardNumber: yup
-    .string()
-    .required("Card number is required")
-    .matches(/^\d{16}$/, "Card number must be exactly 16 digits"),
-
-  cardExpiry: yup
-    .string()
-    .required("Expiry date is required")
-    .matches(/^(0[1-9]|1[0-2])\d{2}$/, "Expiry date must be in MMYY format"),
-
-  cardCVV: yup
-    .string()
-    .required("CVV is required")
-    .matches(/^\d{3,4}$/, "CVV must be 3 or 4 digits"),
-}).required();
-
-type FormData = yup.InferType<typeof schema>
-
+type FormData = yup.InferType<typeof schema>;
 
 const CheckoutScreen = () => {
-  const { control, handleSubmit } = useForm({
-    resolver: yupResolver(schema)
-  });
-  const navigation = useNavigation()
+  const navigation = useNavigation();
+  const { t } = useTranslation();
 
-  const {userData} = useSelector((state:RootState) => state.userSlice)
-  const {items} = useSelector((state: RootState) => state.cartSlice)
+  const schema = yup
+    .object({
+      phoneNumber: yup
+        .string()
+        .required(t("phonenumber_missing"))
+        .matches(/^\d{10}$/, t("phonenumber_format")),
+
+      cardName: yup
+        .string()
+        .required(t("missing_cardname"))
+        .matches(/^[a-zA-Z\s]+$/, t("cardname_format"))
+        .min(3, t("cardname_minimum"))
+        .max(50, t("cardname_maximum")),
+
+      cardNumber: yup
+        .string()
+        .required(t("missing_cardnumber"))
+        .matches(/^\d{16}$/, t("cardnumber_format")),
+
+      cardExpiry: yup
+        .string()
+        .required(t("missing_expiry"))
+        .matches(/^(0[1-9]|1[0-2])\d{2}$/, t("expiry_format")),
+
+      cardCVV: yup
+        .string()
+        .required(t("missing_cvv"))
+        .matches(/^\d{3,4}$/, t("cvv_format")),
+    })
+    .required();
+
+  const { control, handleSubmit } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const { userData } = useSelector((state: RootState) => state.userSlice);
+  const { items } = useSelector((state: RootState) => state.cartSlice);
   const totalProductsPriceSum = items.reduce((acc, item) => acc + item.sum, 0);
 
   const saveOrder = async (formData: FormData) => {
-
-    try{
-
+    try {
       const orderBody = {
         ...formData,
         items,
         totalProductsPriceSum,
         createdAt: new Date(),
-      }
+      };
 
-      const userOrderRef = collection(doc(db, "users", userData.uid), "orders")
-      await addDoc(userOrderRef, orderBody)
+      const userOrderRef = collection(doc(db, "users", userData.uid), "orders");
+      await addDoc(userOrderRef, orderBody);
 
-      const ordersRef = collection(db, "orders")
-      await addDoc(ordersRef, orderBody)
+      const ordersRef = collection(db, "orders");
+      await addDoc(ordersRef, orderBody);
 
-      showMessage({type:"success", message: "Order Places Successfully"})
-      navigation.goBack()
+      showMessage({ type: "success", message: "Order Places Successfully" });
+      navigation.goBack();
 
       console.log(formData);
-    } catch(error){
-      console.error("Error saving order:", error)
-      showMessage({type:"danger", message: "Error Occurred"})
+    } catch (error) {
+      console.error("Error saving order:", error);
+      showMessage({ type: "danger", message: "Error Occurred" });
     }
-    
   };
 
   return (
@@ -96,30 +97,30 @@ const CheckoutScreen = () => {
           <AppTextInputController
             control={control}
             name={"phoneNumber"}
-            placeholder="Phone Number"
+            placeholder={t("placeholder_phonenumber")}
             keyboardType="numeric"
           />
           <AppTextInputController
             control={control}
             name={"cardName"}
-            placeholder="Name on Card"
+            placeholder={t("placeholder_cardname")}
           />
           <AppTextInputController
             control={control}
             name={"cardNumber"}
-            placeholder="Card Number"
+            placeholder={t("placeholder_cardnumber")}
             keyboardType="numeric"
           />
           <AppTextInputController
             control={control}
             name={"cardExpiry"}
-            placeholder="Expiry Date MMYYYY"
+            placeholder={t("placeholder_expiry")}
             keyboardType="numeric"
           />
           <AppTextInputController
             control={control}
             name={"cardCVV"}
-            placeholder="CVV"
+            placeholder={t("placeholder_cvv")}
             keyboardType="numeric"
           />
         </View>
