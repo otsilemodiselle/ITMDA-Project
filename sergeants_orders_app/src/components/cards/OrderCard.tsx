@@ -4,6 +4,7 @@ import AppText from '../texts/AppText'
 import { AppColors } from '../../styles/colors'
 import { s, vs } from 'react-native-size-matters'
 import { commonStyles } from '../../styles/sharedStyles'
+import { useTranslation } from "react-i18next";
 
 interface IOrderCard {
     cost: number;
@@ -11,15 +12,16 @@ interface IOrderCard {
 }
 
 const OrderCard : FC<IOrderCard> = ({cost, date}) => {
+  const { t } = useTranslation();
   return (
     <View style={styles.orderCard}>
-      <AppText style={styles.orderCardHeader}>ORDER DETAILS:</AppText>
+      <AppText style={styles.orderCardHeader}>{t("order_header")}</AppText>
       <View style={styles.orderCostGroup}>
-        <AppText>Total Cost:</AppText>
+        <AppText>{t("order_costField")}</AppText>
         <AppText>R{cost}</AppText>
       </View>
       <View style={styles.orderDateGroup}>
-        <AppText>Date:</AppText>
+        <AppText>{t("order_dateField")}</AppText>
         <AppText>{date}</AppText>
       </View>
     </View>
