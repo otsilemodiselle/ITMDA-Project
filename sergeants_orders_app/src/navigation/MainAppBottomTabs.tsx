@@ -7,10 +7,12 @@ import { s, vs } from "react-native-size-matters";
 import { Ionicons } from "@expo/vector-icons";
 import { IS_Android } from "../constants/constants";
 import { setStatusBarBackgroundColor } from "expo-status-bar";
+import { useTranslation } from "react-i18next";
 
 const Tab = createBottomTabNavigator();
 
 export default function MainAppBottomTabs() {
+  const { t } = useTranslation();
   return (
     <Tab.Navigator
       screenOptions={{
@@ -34,7 +36,7 @@ export default function MainAppBottomTabs() {
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="pizza" size={size} color={color} />
           ),
-          title: "Menu",
+          title: t("bottom_menu"),
         }}
       />
       <Tab.Screen
@@ -44,7 +46,7 @@ export default function MainAppBottomTabs() {
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="cart" size={size} color={color} />
           ),
-          title: "Cart",
+          title: t("bottom_cart"),
         }}
       />
       <Tab.Screen
@@ -53,7 +55,7 @@ export default function MainAppBottomTabs() {
         options={{
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="person" size={size} color={color} />
-          ),
+          ), title: t("bottom_profile")
         }}
       />
     </Tab.Navigator>
