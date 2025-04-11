@@ -56,5 +56,8 @@
     "go_browseButton": "Ee, Rra!",
     "bottom_menu": "Menyu",
     "bottom_cart": "Teroli",
-    "bottom_profile": "Porofaele"
+    "bottom_profile": "Porofaele",
+    "order_header": "DINTLHA TSA OTARO:",
+    "order_costField": "Palogotlhe ya Ditshenyegelo:",
+    "order_dateField": "Letlha:"
 }
