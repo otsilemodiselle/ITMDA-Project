@@ -53,5 +53,8 @@
     "language_confirmButton": "Qinisekisa",
     "cart_empty": "Ibhakede lakho liphumelelayo",
     "go_browse": "Hamba bheka imenyu MANJE!",
-    "go_browseButton": "Yebo, Mnumzane!"
+    "go_browseButton": "Yebo, Mnumzane!",
+    "bottom_menu": "Imenyu",
+    "bottom_cart": "Inqola",
+    "bottom_profile": "Iphrofayela"
 }

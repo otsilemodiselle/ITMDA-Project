@@ -53,5 +53,8 @@
     "language_confirmButton": "Confirm",
     "cart_empty": "Your cart is empty",
     "go_browse": "Browse menu NOW!",
-    "go_browseButton": "Yes, Sir!"
+    "go_browseButton": "Yes, Sir!",
+    "bottom_menu": "Menu",
+    "bottom_cart": "Cart",
+    "bottom_profile": "Profile"
 }

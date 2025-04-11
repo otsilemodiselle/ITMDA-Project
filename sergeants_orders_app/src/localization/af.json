@@ -53,5 +53,8 @@
     "language_confirmButton": "Bevestig",
     "cart_empty": "Jou mandjie is leeg",
     "go_browse": "Blaai deur die spyskaart NOU!",
-    "go_browseButton": "Ja, Maneer!"
+    "go_browseButton": "Ja, Maneer!",
+    "bottom_menu": "Spyskaart",
+    "bottom_cart": "Karretjie",
+    "bottom_profile": "Profiel"
 }

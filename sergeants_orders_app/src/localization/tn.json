@@ -53,5 +53,8 @@
     "language_confirmButton": "Tlhomamisa",
     "cart_empty": "Kolotsana ya gago ga e na sepe",
     "go_browse": "Batla menyu JAANONG!",
-    "go_browseButton": "Ee, Rra!"
+    "go_browseButton": "Ee, Rra!",
+    "bottom_menu": "Menyu",
+    "bottom_cart": "Teroli",
+    "bottom_profile": "Porofaele"
 }
