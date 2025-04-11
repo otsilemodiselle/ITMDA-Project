@@ -9,6 +9,8 @@ import { useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { RootState } from "../store/store";
 import { isLoaded, isLoading } from "expo-font";
+import { ActivityIndicator, View } from "react-native";
+import { AppColors } from "../styles/colors";
 
 const Stack = createStackNavigator();
 
@@ -35,7 +37,11 @@ export default function MainAppStack() {
   }, []);
 
   if (isLoading) {
-    return null;
+    return (
+        <View style={{justifyContent:"center", alignItems:"center", flex:1, backgroundColor:AppColors.mainBackground}}>
+            <ActivityIndicator size={"large"} color={AppColors.accentYellow}/>
+        </View>
+    )
   }
 
   return (
