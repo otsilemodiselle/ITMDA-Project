@@ -34,7 +34,7 @@ const ProfileScreen = () => {
         />
         <ProfileSectionButton
           title={t("profile_myRewards")}
-          onPress={() => {}}
+          onPress={() => navigation.navigate("RewardsScreen")}
         />
         <ProfileSectionButton
           title={t("profile_language")}

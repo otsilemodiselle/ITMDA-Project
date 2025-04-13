@@ -1,11 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import AppSafeView from '../../components/Views/AppSafeView'
 
 const RewardsScreen = () => {
   return (
-    <View>
-      <Text>RewardsScreen</Text>
-    </View>
+    <AppSafeView>
+        <View>
+            <Text>RewardsScreen</Text>
+        </View>
+    </AppSafeView>
   )
 }
 

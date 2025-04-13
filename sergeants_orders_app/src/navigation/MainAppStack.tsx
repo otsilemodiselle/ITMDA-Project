@@ -3,6 +3,7 @@ import AuthStack from "./AuthStack";
 import MainAppBottomTabs from "./MainAppBottomTabs";
 import CheckoutScreen from "../components/cart/CheckoutScreen";
 import MyOrders from "../screens/profile/MyOrders";
+import RewardsScreen from "../screens/profile/RewardsScreen";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -56,6 +57,7 @@ export default function MainAppStack() {
       <Stack.Screen name="MainAppBottomTabs" component={MainAppBottomTabs} />
       <Stack.Screen name="CheckoutScreen" component={CheckoutScreen} />
       <Stack.Screen name="MyOrders" component={MyOrders} />
+      <Stack.Screen name="RewardsScreen" component={RewardsScreen} />
     </Stack.Navigator>
   );
 }
