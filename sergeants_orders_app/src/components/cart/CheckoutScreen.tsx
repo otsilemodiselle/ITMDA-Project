@@ -13,17 +13,22 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
-import { addDoc, collection, doc } from "firebase/firestore";
+import { addDoc, collection, doc, increment, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { showMessage } from "react-native-flash-message";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
+import { incrementOrderCounter } from "../../store/slices/userSlice";
+
 
 type FormData = yup.InferType<typeof schema>;
 
 const CheckoutScreen = () => {
   const navigation = useNavigation();
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+
 
   const schema = yup
     .object({
@@ -78,6 +83,13 @@ const CheckoutScreen = () => {
 
       const ordersRef = collection(db, "orders");
       await addDoc(ordersRef, orderBody);
+
+      const userDocRef = doc(db, "users", userData.uid);
+      await updateDoc(userDocRef, {
+      orderCounter: increment(1),
+      });
+
+      dispatch(incrementOrderCounter());
 
       showMessage({ type: "success", message: "Order Places Successfully" });
       navigation.goBack();

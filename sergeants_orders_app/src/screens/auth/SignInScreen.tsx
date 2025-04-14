@@ -20,8 +20,9 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../config/firebase";
 import { showMessage } from "react-native-flash-message";
 import { useDispatch } from "react-redux";
-import { setUserData } from "../../store/reducers/userSlice";
+import { fetchOrderCounter, setUserData,  } from "../../store/reducers/userSlice";
 import { useTranslation } from "react-i18next";
+import { AppDispatch } from "../store/store";
 
 type FormData = yup.InferType<typeof schema>;
 
@@ -45,7 +46,8 @@ const SignInScreen = () => {
       .matches(/[@$!%*?&]/, t("missing_symbol")),
   });
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
+
 
   const onLoginPress = async (data: FormData) => {
     console.log(data);
@@ -62,6 +64,7 @@ const SignInScreen = () => {
         uid: userCredential.user.uid,
       };
       dispatch(setUserData(userDataObj));
+      dispatch(fetchOrderCounter(userCredential.user.uid));
     } catch (error: any) {
       let errorMessage = "";
       console.log(error.code);
@@ -70,6 +73,7 @@ const SignInScreen = () => {
       } else if (error.code === "auth/invalid-credential") {
         errorMessage = t("wrong_credentials");
       } else {
+        console.log("Here's the error>>>>>>>>>>" + error.code);
         errorMessage = t("login_error");
       }
 
