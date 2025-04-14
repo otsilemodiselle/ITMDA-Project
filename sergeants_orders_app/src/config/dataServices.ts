@@ -16,6 +16,21 @@ export const getProductsData = async () => {
   }
 };
 
+export const getRewardsData = async () => {
+  try {
+    const querySnapshot = await getDocs(collection(db, "rewards"));
+    const list = [];
+
+    querySnapshot.forEach((doc) => {
+      list.push(doc.data());
+    });
+
+    return list;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
+
 export const fetchUserOrders = async () => {
   try {
     // const userIdFromRedux = store.getState().userSlice.userData.uid;

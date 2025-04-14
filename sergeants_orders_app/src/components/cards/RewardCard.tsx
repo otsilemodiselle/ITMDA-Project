@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
         backgroundColor: AppColors.surface,
         padding: s(10),
         margin: s(10),
-        marginBottom: s(30),
         borderRadius: s(5),
         width: "95%",
         ...commonStyles.shadow,
