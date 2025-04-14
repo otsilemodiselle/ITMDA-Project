@@ -23,6 +23,9 @@ import { showMessage } from "react-native-flash-message";
 import { useDispatch } from "react-redux";
 import { setUserData } from "../../store/reducers/userSlice";
 import { useTranslation } from "react-i18next";
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../../config/firebase';
+
 
 type FormData = yup.InferType<typeof schema>;
 
@@ -62,10 +65,18 @@ const SignUpScreen = () => {
         data.inputtedRegistrationEmail,
         data.inputtedRegistrationPassword
       );
+      const userId = userCredential.user.uid;
+
+      await setDoc(doc(db, "users", userId), {
+        username: data.inputtedRegistrationUsername,
+        email: data.inputtedRegistrationEmail,
+        orderCounter: 0,
+      });
+
       Alert.alert(t("signup_welcome"));
       navigation.navigate("MainAppBottomTabs");
       const userDataObj = {
-        uid: userCredential.user.uid,
+        uid: userId,
       };
       dispatch(setUserData(userDataObj));
     } catch (error: any) {
