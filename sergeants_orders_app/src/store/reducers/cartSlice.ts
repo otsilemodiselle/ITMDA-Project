@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { discount } from "userSlice"
 
 interface CartItem {
     id: number | string;

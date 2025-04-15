@@ -25,7 +25,8 @@
     "username_symbol": "Username can only contain letters, numbers, and underscores",
     "signup_welcome": "Welcome, Soldier!",
     "checkout_continueButton": "Continue",
-    "checkout_total": "Order Total:",
+    "checkout_subTotal": "Sub-total:",
+    "checkout_total": "Total:",
     "checkout_quantity": "Total Items:",
     "delete_cartItem": "delete",
     "phonenumber_missing": "Phone number is required",
@@ -59,5 +60,8 @@
     "bottom_profile": "Profile",
     "order_header": "ORDER DETAILS:",
     "order_costField": "Total Cost:",
-    "order_dateField": "Date:"
+    "order_dateField": "Date:",
+    "rank_discount_label": "Rank",
+    "checkout_discount": "off"
+
 }

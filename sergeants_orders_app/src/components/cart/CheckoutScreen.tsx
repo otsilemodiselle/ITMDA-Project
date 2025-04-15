@@ -19,7 +19,8 @@ import { showMessage } from "react-native-flash-message";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { incrementOrderCounter } from "../../store/slices/userSlice";
+import { incrementOrderCounter, setOrderCounter } from "../../store/reducers/userSlice";
+import { emptyCart } from "../../store/reducers/cartSlice";
 
 
 type FormData = yup.InferType<typeof schema>;
@@ -91,8 +92,9 @@ const CheckoutScreen = () => {
 
       dispatch(incrementOrderCounter());
 
-      showMessage({ type: "success", message: "Order Places Successfully" });
-      navigation.goBack();
+      showMessage({ type: "success", message: "Order Placed Successfully" });
+      dispatch(emptyCart());
+      navigation.navigate("HomeScreen");
 
       console.log(formData);
     } catch (error) {

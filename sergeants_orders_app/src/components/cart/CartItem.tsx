@@ -7,6 +7,8 @@ import { AppFonts } from "../../styles/fonts";
 import { AppColors } from "../../styles/colors";
 import { commonStyles } from "../../styles/sharedStyles";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 interface ICartItem {
   title: string;
@@ -28,6 +30,9 @@ const CartItem: FC<ICartItem> = ({
   onReducedPress,
 }) => {
   const { t } = useTranslation();
+  const discount = useSelector((state: RootState) => state.userSlice.discount);
+  const isDiscounted = discount > 0;
+
   return (
     <View style={styles.productCard}>
       <View style={styles.cartItemActionsContainer}>
@@ -61,7 +66,9 @@ const CartItem: FC<ICartItem> = ({
           <AppText style={styles.price}>R{price}</AppText>
           <TouchableOpacity onPress={onDeletePress}>
             <View style={styles.deleteCartItemSection}>
-              <AppText style={styles.deleteCaption}>{t("delete_cartItem")}</AppText>
+              <AppText style={styles.deleteCaption}>
+                {t("delete_cartItem")}
+              </AppText>
               <Ionicons name="trash" size={25} color={AppColors.accentGray} />
             </View>
           </TouchableOpacity>
@@ -69,6 +76,13 @@ const CartItem: FC<ICartItem> = ({
       </View>
       <View style={styles.imageContainer}>
         <Image style={styles.productImage} source={{ uri: imageURL }} />
+        {isDiscounted && (
+          <View style={styles.discountSticker}>
+            <Text style={styles.discountText}>
+              {Math.round(discount * 100)}% OFF
+            </Text>
+          </View>
+        )}
       </View>
     </View>
   );
@@ -167,5 +181,21 @@ const styles = StyleSheet.create({
     width: "100%",
     padding: 10,
     transform: [{ scaleY: 1.1 }, { translateY: 0 }],
+  },
+  discountSticker: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    backgroundColor: AppColors.accentYellow,
+    paddingVertical: vs(2),
+    paddingHorizontal: s(8),
+    borderBottomRightRadius: s(8),
+    zIndex: 2,
+  },
+
+  discountText: {
+    color: AppColors.mainBackground,
+    fontWeight: "800",
+    fontSize: s(12),
   },
 });
