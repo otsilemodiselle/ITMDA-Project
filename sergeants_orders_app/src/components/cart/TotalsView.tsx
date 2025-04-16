@@ -19,7 +19,7 @@ const TotalsView: FC<ITotalView> = ({ itemCount, orderTotal }) => {
   const navigation = useNavigation();
   const { t } = useTranslation();
 
-  const { rank, discount } = useSelector((state: RootState) => state.userSlice);
+  const { rank, discount, medals } = useSelector((state: RootState) => state.userSlice);
   const originalTotal = (orderTotal / (1 - discount)).toFixed(2);
 
   return (
@@ -38,7 +38,7 @@ const TotalsView: FC<ITotalView> = ({ itemCount, orderTotal }) => {
 
       <View style={styles.row}>
         <AppText style={styles.textTitle}>
-          {`${rank} ${t("rank_discount_label")}: `}
+          {`${medals} ${rank} ${t("rank_discount_label")}: `}
         </AppText>
         <AppText style={styles.textPrice}>
           {Math.round(discount * 100)}% {t("checkout_discount")}

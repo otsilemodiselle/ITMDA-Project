@@ -14,14 +14,15 @@ const initialState: UserState = {
   userData: null,
   orderCounter: 0,
   rank: 'Cadet',
-  discount: 0.05
+  discount: 0.05,
+  medals: "🎖️",
 };
 
 const getRankAndDiscount = (orderCounter: number) => {
   const pos = orderCounter % 3;
-  if (pos === 1) return { rank: 'Lieutenant🎖️🎖️', discount: 0.10 };
-  if (pos === 2) return { rank: 'Sergeant🎖️🎖️🎖️', discount: 0.15 };
-  return { rank: 'Cadet🎖️', discount: 0.05 };
+  if (pos === 1) return { rank: 'Lieutenant', discount: 0.10, medals: '🎖️🎖️' };
+  if (pos === 2) return { rank: 'Sergeant', discount: 0.15, medals: '🎖️🎖️🎖️' };
+  return { rank: 'Cadet', discount: 0.05, medals: '🎖️' };
 };
 
 const userSlice = createSlice({

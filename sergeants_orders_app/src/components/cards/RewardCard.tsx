@@ -1,61 +1,79 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, { FC } from 'react'
-import Entypo from '@expo/vector-icons/Entypo';
-import { AppColors } from '../../styles/colors';
-import { s } from 'react-native-size-matters';
+import { StyleSheet, Text, View } from "react-native";
+import React, { FC } from "react";
+import Entypo from "@expo/vector-icons/Entypo";
+import { AppColors } from "../../styles/colors";
+import { s } from "react-native-size-matters";
 import { useTranslation } from "react-i18next";
-import AppText from '../texts/AppText';
+import AppText from "../texts/AppText";
 import { commonStyles } from "../../styles/sharedStyles";
 
 interface IRewardCard {
-    title: string;
-    description: string;
+  title: string;
+  description: string;
+  medals: string;
+  discount: number;
+  isCurrentRank?: boolean;
 }
 
-const RewardCard: FC<IRewardCard> = ({title, description}) => {
+const RewardCard: FC<IRewardCard> = ({
+  title,
+  description,
+  medals,
+  discount,
+  isCurrentRank,
+}) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.containerTop}>
-        <View style={styles.iconContainer}>
-            <Entypo name="price-ribbon" size={58} color={AppColors.secondaryText} />
-        </View>
-        <View style={styles.rewardHeaderContainer}>
-            <AppText style={styles.header}>{title}</AppText>
-        </View>
-      </View>
-      <View style={styles.containerBottom}>
-            <AppText>{description}</AppText>
-      </View>
-    </View>
-  )
-}
+    <View
+      style={[
+        styles.container,
+        isCurrentRank && {
+          borderWidth: 1,
+          borderColor: AppColors.accentYellow,
+        },
+      ]}
+    >
+      <AppText style={styles.header}>{title}</AppText>
 
-export default RewardCard
+      <AppText style={styles.medals}>{medals}</AppText>
+
+      <AppText style={styles.discount}>{discount * 100}% OFF</AppText>
+
+      <AppText style={styles.copy}>{description}</AppText>
+    </View>
+  );
+};
+
+export default RewardCard;
 
 const styles = StyleSheet.create({
-    container:{
-        flexDirection:"column",
-        backgroundColor: AppColors.surface,
-        padding: s(10),
-        margin: s(10),
-        borderRadius: s(5),
-        width: "95%",
-        ...commonStyles.shadow,
-    },
-    containerTop:{
-        flexDirection:"row"
-    },
-    iconContainer:{
-    },
-    rewardHeaderContainer:{
-        flex: 1
-    },
-    header:{
-       fontSize:50 
-    },
-    containerMiddle:{
-    },
-    containerBottom:{
-        padding:20
-    },
-})
+  container: {
+    backgroundColor: AppColors.surface,
+    padding: s(5),
+    margin: s(3),
+    borderRadius: s(5),
+    alignItems: "center",
+    width: s(108),
+    height: s(360),
+    alignContent: "center",
+    ...commonStyles.shadow,
+  },
+  header: {
+    fontSize: 22,
+    borderBottomWidth: 2,
+    borderColor: AppColors.secondaryText,
+    marginBottom: s(15),
+  },
+
+  copy: {
+    fontSize: 16,
+    textAlign: "center",
+  },
+  medals: {
+    fontSize: 25,
+    marginBottom: s(15),
+  },
+  discount: {
+    fontSize: 25,
+    marginBottom: s(15),
+  },
+});
