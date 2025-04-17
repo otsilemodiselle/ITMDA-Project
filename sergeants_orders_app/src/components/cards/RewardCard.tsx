@@ -27,7 +27,7 @@ const RewardCard: FC<IRewardCard> = ({
       style={[
         styles.container,
         isCurrentRank && {
-          borderWidth: 1,
+          borderWidth: 2,
           borderColor: AppColors.accentYellow,
         },
       ]}

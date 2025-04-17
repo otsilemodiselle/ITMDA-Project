@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import AppSafeView from "../../components/Views/AppSafeView";
 import HomeHeader from "../../components/headers/homeHeader";
@@ -11,9 +11,16 @@ import AppButton from "../../components/buttons/AppButton";
 import AppText from "../../components/texts/AppText";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
+import { useNavigation } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
+import { RouteProp, useRoute } from "@react-navigation/native";
+import { MainAppStackParamList } from "../../navigation/MainAppStack";
 
+type RewardsScreenRouteProp = RouteProp<MainAppStackParamList, "RewardsScreen">;
 
 const RewardsScreen = () => {
+  const route = useRoute<RewardsScreenRouteProp>();
+  const { fromCheckout } = route.params || {};
   const [rewardsList, setRewardsList] = useState([]);
 
   const fetchRewards = async () => {
@@ -25,21 +32,39 @@ const RewardsScreen = () => {
     fetchRewards();
   }, []);
 
+  const navigation = useNavigation();
+  const { t } = useTranslation();
+
   const rank = useSelector((state: RootState) => state.userSlice.rank);
+
+  useEffect(() => {
+    if (fromCheckout) {
+      if (rank !== "Cadet") {
+        Alert.alert("Order Placed!", "Congrats! You've unlocked a new rank.");
+      } else {
+        Alert.alert(
+          "Order Placed",
+          "Congrats on completing a full rank cycle. Let's start again!"
+        );
+      }
+    }
+  }, [fromCheckout, rank]);
 
   return (
     <AppSafeView>
       <HomeHeader />
       <View style={styles.mainContainer}>
         <View style={styles.bottomCaptionContainer}>
-          <AppText style={styles.instructCaption}>Load up, rank up, and SAVE!</AppText>
+          <AppText style={styles.instructCaption}>
+            {t("rank_instruction")}
+          </AppText>
         </View>
-        
+
         <View style={styles.flatlistContainer}>
           <FlatList
             style={styles.cardsFlatlist}
             data={rewardsList}
-            keyExtractor={(item) => item.id.toString()}
+            keyExtractor={(item) => item.id}
             horizontal
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.listContent}
@@ -57,7 +82,11 @@ const RewardsScreen = () => {
           />
         </View>
         <View style={styles.buttonContainer}>
-          <AppButton style={styles.orderButton} title="MENU" />
+          <AppButton
+            style={styles.orderButton}
+            title={t("rank_menuButton")}
+            onPress={() => navigation.navigate("MainAppBottomTabs")}
+          />
         </View>
       </View>
     </AppSafeView>
@@ -67,29 +96,32 @@ const RewardsScreen = () => {
 export default RewardsScreen;
 
 const styles = StyleSheet.create({
-  mainContainer:{
-    alignContent: "center"
+  mainContainer: {
+    alignContent: "center",
   },
   cardsFlatlist: {
     marginLeft: s(4),
     marginBottom: s(20),
     height: s(370),
   },
-  bottomCaptionContainer:{
+  bottomCaptionContainer: {
     justifyContent: "center",
     alignItems: "center",
-    padding: s(10)
+    padding: s(10),
   },
   instructCaption: {
     color: AppColors.mainText,
     fontSize: s(16),
     textAlign: "center",
-    margin: s(10)
+    margin: s(10),
   },
-  buttonContainer:{
-    paddingHorizontal:s(10)
+  buttonContainer: {
+    paddingHorizontal: s(10),
   },
-  orderButton:{
-    marginHorizontal:s(20),
-  }
+  orderButton: {
+    marginHorizontal: s(20),
+  },
+  flatlistContainer: {
+    marginBottom: s(10),
+  },
 });

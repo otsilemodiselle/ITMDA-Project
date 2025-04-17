@@ -62,6 +62,8 @@
     "order_costField": "Total Cost:",
     "order_dateField": "Date:",
     "rank_discount_label": "Rank",
-    "checkout_discount": "off"
+    "checkout_discount": "off",
+    "rank_instruction": "Load up, rank up, and SAVE!",
+    "rank_menuButton": "MENU"
 
 }

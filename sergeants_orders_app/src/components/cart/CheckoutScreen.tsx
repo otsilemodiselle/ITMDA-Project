@@ -21,15 +21,19 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { incrementOrderCounter, setOrderCounter } from "../../store/reducers/userSlice";
 import { emptyCart } from "../../store/reducers/cartSlice";
+import { MainAppStackParamList } from "../../navigation/MainAppStack";
+import { StackNavigationProp } from "@react-navigation/stack";
+
+type NavigationProp = StackNavigationProp<MainAppStackParamList, "CheckoutScreen">;
 
 
 type FormData = yup.InferType<typeof schema>;
 
 const CheckoutScreen = () => {
-  const navigation = useNavigation();
   const { t } = useTranslation();
   const dispatch = useDispatch();
-
+  const navigation = useNavigation<NavigationProp>();
+  
 
   const schema = yup
     .object({
@@ -94,7 +98,8 @@ const CheckoutScreen = () => {
 
       showMessage({ type: "success", message: "Order Placed Successfully" });
       dispatch(emptyCart());
-      navigation.navigate("HomeScreen");
+      navigation.navigate("RewardsScreen", { fromCheckout: true });
+
 
       console.log(formData);
     } catch (error) {

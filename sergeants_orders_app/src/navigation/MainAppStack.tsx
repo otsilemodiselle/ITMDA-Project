@@ -14,7 +14,15 @@ import { AppColors } from "../styles/colors";
 import { onAuthStateChanged } from "@firebase/auth";
 import { auth } from "../config/firebase";
 
-const Stack = createStackNavigator();
+export type MainAppStackParamList = {
+  AuthStack: undefined;
+  MainAppBottomTabs: undefined;
+  CheckoutScreen: undefined;
+  MyOrders: undefined;
+  RewardsScreen: { fromCheckout: boolean } | undefined;
+};
+
+const Stack = createStackNavigator<MainAppStackParamList>();
 
 export default function MainAppStack() {
   const [isLoading, setIsLoading] = useState<boolean>(true);

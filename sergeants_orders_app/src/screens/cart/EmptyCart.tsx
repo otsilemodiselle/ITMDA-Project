@@ -25,7 +25,7 @@ const Empty = () => {
       <AppButton
         title={t("go_browseButton")}
         style={styles.redirectToMenuButton}
-        onPress={() => navigation.navigate("Home")}
+        onPress={()=>navigation.navigate("Home")}
       />
     </View>
   );

@@ -20,18 +20,16 @@ export default function App() {
   }
 
   return (
-    <>
-      <Provider store={store}>
-        <PersistGate persistor={persistor}>
-          <I18nextProvider i18n={i18n}>
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <I18nextProvider i18n={i18n}>
+          <NavigationContainer>
+            <MainAppStack />
             <FlashMessage position={"top"} />
-            <NavigationContainer>
-              <MainAppStack />
-            </NavigationContainer>
-          </I18nextProvider>
-        </PersistGate>
-      </Provider>
-    </>
+          </NavigationContainer>
+        </I18nextProvider>
+      </PersistGate>
+    </Provider>
   );
 }
 
